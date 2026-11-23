@@ -1,0 +1,59 @@
+.section {
+  padding: clamp(24px, 6svh, 56px) clamp(20px, 6.6vw, 96px) clamp(28px, 6svh, 64px);
+}
+
+.container {
+  max-width: 1260px;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  margin-bottom: clamp(12px, 2.5svh, 22px);
+  color: #004fcb;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-size: clamp(2.65rem, min(9.2vw, 14.5svh), 8.5rem);
+  line-height: 0.91;
+  letter-spacing: -0.055em;
+  overflow-wrap: anywhere;
+}
+
+.line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.description {
+  max-width: 48ch;
+  margin-top: clamp(16px, 3svh, 26px);
+  color: var(--gray-115);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(14px, 2.5svh, 22px);
+}
+
+.actions .action {
+  height: 44px;
+  padding-inline: 18px;
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 660px) {
+  .heading { line-height: 0.98; }
+  .line { display: inline; }
+}

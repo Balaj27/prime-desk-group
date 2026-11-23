@@ -1,0 +1,86 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: none;
+  height: 52px;
+  padding: 14px 28px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--border, var(--fill));
+  border-radius: 1000px;
+  background-color: var(--fill);
+  color: var(--label);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.block {
+  display: flex;
+  width: 100%;
+}
+
+.arrow {
+  display: flex;
+  flex: none;
+}
+
+.red,
+.work,
+.apply,
+.planDark,
+.submit {
+  --fill: var(--accent);
+  --fill-hover: #004fc7;
+  --label: var(--white);
+}
+
+.white {
+  --fill: var(--white);
+  --fill-hover: #e9e5dd;
+  --border: var(--accent);
+  --label: #004fcb;
+}
+
+.outline {
+  --fill: transparent;
+  --fill-hover: var(--ink);
+  --border: var(--white);
+  --label: var(--white);
+}
+
+.planLight {
+  --fill: transparent;
+  --fill-hover: #e9e5dd;
+  --border: var(--ink);
+  --label: var(--ink);
+}
+
+.dark {
+  --fill: var(--ink);
+  --fill-hover: #080f22;
+  --label: var(--white);
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--fill-hover);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .button {
+    transition: background-color 150ms ease-out;
+  }
+
+  .arrow {
+    transition: transform 150ms ease-out;
+  }
+
+  .button:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+}

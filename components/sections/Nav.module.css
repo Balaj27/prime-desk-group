@@ -1,0 +1,227 @@
+.nav {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  height: var(--nav-height);
+  padding-inline: 30px;
+  background: var(--bg);
+}
+
+.nav::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 6px;
+  background: var(--brand-stripe);
+  content: "";
+  pointer-events: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1660px;
+  height: 100%;
+  margin-inline: auto;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 30.5px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.logo img {
+  width: 56px;
+  height: auto;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.3vw, 32px);
+}
+
+.link {
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.link:hover,
+.link[aria-current="page"] {
+  color: #004fcb;
+}
+
+.cta {
+  flex: none;
+}
+
+.menuButton,
+.menu {
+  display: none;
+}
+
+@media (max-width: 809.98px) {
+  .nav {
+    padding-inline: clamp(16px, 5vw, 30px);
+  }
+
+  .nav::after {
+    height: 4px;
+  }
+
+  .logo {
+    gap: 5px;
+    font-size: clamp(1.25rem, 6vw, 1.625rem);
+  }
+
+  .logo img {
+    width: clamp(36px, 11vw, 48px);
+  }
+
+  .links,
+  .cta {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 13px;
+    border: 1px solid #1b3465;
+    border-radius: 999px;
+    background: #0d1c50;
+    color: var(--white);
+    font-size: 0.875rem;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  .menuIcon {
+    display: grid;
+    align-content: center;
+    gap: 4px;
+    width: 16px;
+    height: 18px;
+  }
+
+  .menuIcon span {
+    height: 2px;
+    border-radius: 2px;
+    background: #a6cbff;
+  }
+
+  .menuButton[aria-expanded="false"] {
+    justify-content: center;
+    min-width: 44px;
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .menuButton[aria-expanded="false"] .menuIcon {
+    width: 22px;
+    gap: 5px;
+  }
+
+  .menuButton[aria-expanded="false"] .menuIcon span {
+    background: var(--ink);
+  }
+
+  .menuButton[aria-expanded="true"] .menuIcon span:first-child {
+    transform: translateY(3px) rotate(45deg);
+  }
+
+  .menuButton[aria-expanded="true"] .menuIcon span:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  .menu:not([hidden]) {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: clamp(12px, 4vw, 30px);
+    display: grid;
+    gap: 14px;
+    width: min(460px, calc(100% - 24px));
+    max-height: calc(100dvh - var(--nav-height) - 22px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 18px;
+    border: 1px solid #365387;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at 100% 0%, #1d3f80, #0d1c50 70%);
+    color: var(--white);
+    box-shadow: 0 14px 36px rgb(13 28 80 / 27%);
+  }
+
+  .menuGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .menuLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 48px;
+    padding: 8px 12px;
+    border: 1px solid rgb(166 203 255 / 23%);
+    border-radius: 12px;
+    background: rgb(255 255 255 / 6%);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    font-weight: 750;
+  }
+
+  .menuLink[aria-current="page"] {
+    border-color: #8ab6ff;
+    background: #244d91;
+  }
+
+  .menuLink[aria-current="page"]::after {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a6cbff;
+    content: "";
+  }
+
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgb(166 203 255 / 23%);
+    color: #d7e5ff;
+    font-size: 0.875rem;
+  }
+
+  .legal a:hover,
+  .legal a[aria-current="page"] {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .menu a:focus-visible {
+    outline: 2px solid #a6cbff;
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 809.98px) and (prefers-reduced-motion: no-preference) {
+  .menu:not([hidden]) {
+    animation: menu-enter 200ms ease-out;
+  }
+
+  @keyframes menu-enter {
+    from { translate: 0 -8px; }
+  }
+}

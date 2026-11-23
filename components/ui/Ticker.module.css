@@ -1,0 +1,37 @@
+.viewport {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+  will-change: transform;
+}
+
+.group {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+@keyframes ticker {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-25%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow-x: auto;
+  }
+
+  .track {
+    animation: none;
+  }
+
+  .group[aria-hidden="true"] {
+    display: none;
+  }
+}

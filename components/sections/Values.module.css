@@ -1,0 +1,129 @@
+.section {
+  padding: 80px 30px;
+  overflow: clip;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+
+.description {
+  width: 305px;
+  color: var(--gray-115);
+  text-align: end;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.image {
+  position: relative;
+  aspect-ratio: 1.686;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image img {
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 246px;
+  padding: 32px;
+}
+
+/* The card beside the image matches its height, so the rows below line up. */
+.column:nth-child(2) .card:first-child {
+  justify-content: center;
+  aspect-ratio: 1.686;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text h3 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.text p {
+  font-size: 16px;
+  line-height: 27.2px;
+  color: var(--gray-115);
+}
+
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .section[data-tablet-until-1440="true"] {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .section {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .section {
+    padding: 0 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .description {
+    width: 100%;
+    text-align: start;
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    gap: 16px;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .column:nth-child(2) .card:first-child {
+    aspect-ratio: auto;
+  }
+
+  .column {
+    gap: 32px;
+  }
+
+  .columns {
+    gap: 32px;
+  }
+}

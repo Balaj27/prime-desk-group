@@ -1,0 +1,420 @@
+{
+  "nav": {
+    "name": "PrimeDesk",
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "menuGroups": [
+      {
+        "title": "Main Pages",
+        "links": [
+          {
+            "label": "Home",
+            "href": "/"
+          },
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Services",
+            "href": "/services"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy-policy"
+          },
+          {
+            "label": "Terms & Conditions",
+            "href": "/terms-condition"
+          }
+        ]
+      }
+    ]
+  },
+  "hero": {
+    "eyebrowLeft": "MARKETING STUDIO FOR SMALL BUSINESSES",
+    "eyebrowRight": "HOUSTON, TX",
+    "portrait": {
+      "src": "/images/home-owner.webp",
+      "alt": "A small business owner examines a product sample at her worktable"
+    },
+    "checklist": {
+      "heading": "Your marketing, handled",
+      "items": ["Website", "Instagram & content", "Ads & local search", "Reviews", "Brand & brochures"]
+    },
+    "description": "Make the best product you can. We'll handle everything it takes for customers to find you: your website, your Instagram, your ads, your reviews. A full marketing team, without hiring one.",
+    "secondaryCta": {
+      "label": "See what we do",
+      "href": "/services"
+    },
+    "headlineLines": [
+      { "text": "You run the" },
+      { "text": "business.", "accent": "We run" },
+      { "accent": "the marketing." }
+    ]
+  },
+  "brandTicker": [
+    "Social media",
+    "Reels & short-form video",
+    "Meta & Google ads",
+    "Email marketing",
+    "Local SEO",
+    "Web design",
+    "Brand identity",
+    "PR & events",
+    "Staff augmentation"
+  ],
+  "about": {
+    "locations": [
+      "HOUSTON, TX",
+      "EST. 2025"
+    ],
+    "statement": "You run the business. We run the marketing."
+  },
+  "clients": {
+    "heading": "Who we work with",
+    "description": "Small businesses in real estate, construction, legal, healthcare, and financial services.",
+    "tags": [
+      "Real estate",
+      "Construction",
+      "Legal",
+      "Healthcare",
+      "Financial services"
+    ]
+  },
+  "needs": {
+    "heading": "Whatever your business, do it best.",
+    "emphasis": "We’ll handle the marketing.",
+    "description": "Any small business that wants a full marketing team without hiring one. You focus on the work you’re great at. We take care of how customers find you, hear about you, and choose you.",
+    "cards": [
+      {
+        "category": "Your website",
+        "title": "Need a website?",
+        "description": "We design it, build it, and keep it current so it brings in enquiries."
+      },
+      {
+        "category": "Your social",
+        "title": "Need an Instagram?",
+        "description": "We set it up, create the content, and run it week after week."
+      },
+      {
+        "category": "Your customers",
+        "title": "Need more customers?",
+        "description": "We run the ads, the email, and the local search that put you in front of the right people."
+      },
+      {
+        "category": "Your brand",
+        "title": "Need to look established?",
+        "description": "We create the logo, brochures, and decks that make a small business look the part."
+      },
+      {
+        "category": "Your reputation",
+        "title": "Need more reviews?",
+        "description": "We help you collect them, answer them, and show them where buyers are looking."
+      },
+      {
+        "category": "Your time",
+        "title": "Need an extra pair of hands?",
+        "description": "Virtual assistants and extra staff take the day-to-day off your plate."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "heading": "Four steps. A plan you can see and",
+    "headingAccent": "a team that runs it.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discover",
+        "description": "We join your team. We learn your goals, your customers, and what matters most this year.",
+        "image": "/images/home-discover.webp",
+        "imageAlt": "Two teammates review printed documents together"
+      },
+      {
+        "number": "02",
+        "title": "Strategize",
+        "description": "We research your market and competitors. Then we set the plan for channels, messages, and priorities.",
+        "image": "/images/home-strategize.webp",
+        "imageAlt": "Teammates plan their strategy at a whiteboard"
+      },
+      {
+        "number": "03",
+        "title": "Execute",
+        "description": "We create the content, run the campaigns, and keep your website and marketing assets current.",
+        "image": "/images/home-execute.webp",
+        "imageAlt": "A designer works on a layout at a desktop computer"
+      },
+      {
+        "number": "04",
+        "title": "Optimize",
+        "description": "Weekly calls and monthly reports show what works. We cut what doesn't and back what does.",
+        "image": "/images/home-optimize.webp",
+        "imageAlt": "A team member takes notes on a video call"
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "What we need from you",
+        "description": "Direction, reviews, and feedback."
+      },
+      {
+        "title": "What we take on",
+        "description": "Research, strategy, execution, content, and upkeep of your marketing assets."
+      }
+    ]
+  },
+  "values": {
+    "heading": "How we operate",
+    "image": {
+      "src": "/images/values-team.webp",
+      "alt": "Four people gathered in a workspace"
+    },
+    "items": [
+      {
+        "icon": "/images/icon-innovation.svg",
+        "title": "Embedded",
+        "description": "We act as part of your team, not a vendor you brief once a quarter. We join your calls, learn your priorities, and own the work. When priorities change, we change with you."
+      },
+      {
+        "icon": "/images/icon-collaboration.svg",
+        "title": "Straight talk",
+        "description": "You get plain answers and clear reporting. We tell you what is working, what is not, and what we would do next. No jargon. No padding."
+      },
+      {
+        "icon": "/images/icon-integrity.svg",
+        "title": "Built for small business",
+        "description": "We know small teams have limited time and budget. We keep the scope tight and the plan simple. We spend where it moves the numbers."
+      }
+    ]
+  },
+  "services": {
+    "heading": "Services",
+    "description": "One team for your marketing, creative, and support.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Digital Marketing",
+        "summary": "Turn visibility into leads with targeted campaigns and content.",
+        "image": "/images/service-digital-marketing.webp",
+        "imageAlt": "Pink perfume bottle among clouds and floating bubbles",
+        "offerings": [
+          "Social media strategy and management",
+          "Social content, reels, and short-form video",
+          "Meta and Google advertising and optimization",
+          "Email marketing",
+          "Local SEO, citations, and review management",
+          "Digital strategy, lead generation, and reporting"
+        ],
+        "category": "Service",
+        "contactOption": "Digital marketing",
+        "id": "digital-marketing",
+        "outcome": "Get in front of customers"
+      },
+      {
+        "number": "02",
+        "title": "Web & Creative",
+        "summary": "A website and creative assets that make your business easy to find and recognize.",
+        "image": "/images/service-visual-identity.webp",
+        "imageAlt": "A silhouetted figure stands in a wildflower field at dusk",
+        "offerings": [
+          "Website design and development",
+          "Website SEO and content writing",
+          "Graphic design and marketing collateral"
+        ],
+        "category": "Service",
+        "contactOption": "Web and creative",
+        "id": "web-creative",
+        "outcome": "Look great online"
+      },
+      {
+        "number": "03",
+        "title": "Brand & Documentation",
+        "summary": "Brand assets and documents that give customers a consistent impression.",
+        "image": "/images/service-brand-strategy.webp",
+        "imageAlt": "Sunlight casts prisms across an office floor and foliage",
+        "offerings": [
+          "Logo design and brand identity",
+          "Brand guidelines and branding assets",
+          "Company collateral: brochures, decks, portfolios",
+          "Product and service documentation"
+        ],
+        "category": "Service",
+        "contactOption": "Brand and documentation",
+        "id": "brand-documentation",
+        "outcome": "Look established"
+      },
+      {
+        "number": "04",
+        "title": "Business Support",
+        "summary": "More capacity when you need it, without expanding your permanent team.",
+        "image": "/images/service-media-planning.webp",
+        "imageAlt": "A wall of monitors shows colorful horizontal patterns",
+        "offerings": [
+          "Staff augmentation for expanding workloads",
+          "Virtual assistant and day-to-day admin support",
+          "CRM setup, lead management, and follow-up"
+        ],
+        "category": "Service",
+        "contactOption": "Business support",
+        "id": "business-support",
+        "outcome": "Get extra hands"
+      },
+      {
+        "number": "05",
+        "title": "Events & PR",
+        "summary": "Get the word out through events and media coverage, remotely or in person.",
+        "image": "/images/service-events-pr.webp",
+        "imageAlt": "A moderator speaks into a microphone during a panel discussion",
+        "offerings": [
+          "Event planning and support",
+          "Influencer relations",
+          "Podcast support",
+          "Award submissions",
+          "Press releases and media relations"
+        ],
+        "category": "Service",
+        "contactOption": "Events and PR",
+        "id": "events-pr",
+        "outcome": "Get talked about"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently asked questions",
+    "description": "Answers about working with PrimeDesk.",
+    "tabs": [
+      {
+        "label": "General",
+        "items": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "label": "Working together",
+        "items": [
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "items": [
+      {
+        "question": "Who is PrimeDesk for?",
+        "answer": "Any small business that wants a full marketing team without hiring one."
+      },
+      {
+        "question": "Where are you based?",
+        "answer": "Houston, Texas. Our team spans four countries, so work moves across time zones."
+      },
+      {
+        "question": "Can I hire you for one service?",
+        "answer": "Yes. You can take the full program or a single service."
+      },
+      {
+        "question": "How much of my time does this take?",
+        "answer": "The first three months need the most input while we learn your business. We keep your ongoing involvement focused on direction, reviews, and feedback."
+      },
+      {
+        "question": "How do you tailor the work to my business?",
+        "answer": "We learn your priorities and how your team works, then tailor the engagement around that. We aim to start from day one and adjust as your priorities change."
+      },
+      {
+        "question": "What does PrimeDesk take on?",
+        "answer": "We handle research, strategy, execution, content, and upkeep of your marketing assets."
+      },
+      {
+        "question": "How long is the contract?",
+        "answer": "Our contracts are designed for a minimum of 12 months."
+      }
+    ]
+  },
+  "cta": {
+    "image": "/images/cta-shape.webp",
+    "heading": "Ready for a marketing team that works inside yours?",
+    "description": "Tell us about your business. We'll tell you where we'd start."
+  },
+  "footer": {
+    "name": "PrimeDesk",
+    "description": "PrimeDesk is a Houston marketing agency for small businesses. Strategy, creative, and business support from one embedded team.",
+    "columns": [
+      {
+        "title": "Main Pages",
+        "links": [
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Services",
+            "href": "/services"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy-policy"
+          },
+          {
+            "label": "Terms & Conditions",
+            "href": "/terms-condition"
+          }
+        ]
+      }
+    ],
+    "contact": {
+      "title": "Have a question?",
+      "items": [
+        {
+          "icon": "/images/icon-phone.svg",
+          "label": "+1 (832) 819-8366",
+          "href": "tel:+18328198366",
+          "note": "Monday to Friday, 9am to 5pm"
+        },
+        {
+          "icon": "/images/icon-email.svg",
+          "label": "contact@primedeskgroup.com",
+          "href": "mailto:contact@primedeskgroup.com",
+          "note": "We aim to reply in 24 hours"
+        }
+      ]
+    },
+    "copyright": "© 2026 PrimeDesk Business Solutions. All rights reserved."
+  }
+}

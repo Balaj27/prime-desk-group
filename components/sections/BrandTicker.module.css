@@ -1,0 +1,23 @@
+.section {
+  display: flex;
+  align-items: center;
+  min-height: clamp(64px, 8vw, 104px);
+  background: #0059e5;
+  overflow: hidden;
+}
+
+.item {
+  display: flex;
+  flex: none;
+  gap: 8px;
+  font-size: clamp(1.05rem, 2.1vw, 1.7rem);
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 750;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.slash {
+  color: #b4d3ff;
+}

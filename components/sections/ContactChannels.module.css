@@ -1,0 +1,38 @@
+.card {
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid #dcd5c8;
+  border-radius: 18px;
+  background: var(--white);
+}
+
+.list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+
+.list dt {
+  margin-bottom: 3px;
+  color: var(--gray-115);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.list dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.list a:hover {
+  text-decoration: underline;
+}
+
+.list .note {
+  margin-top: 3px;
+  color: var(--gray-115);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
