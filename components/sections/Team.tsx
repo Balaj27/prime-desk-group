@@ -20,8 +20,6 @@ export function Founder({ content }: { content: FounderContent }) {
         <div>
           <p className={styles.eyebrow}>From the founder</p>
           <h2 id="founder-heading" className={styles.founderName}>{content.name}</h2>
-          <p className={styles.draft}>Draft quote for founder approval</p>
-          <blockquote className={styles.quote} data-scroll-group>“{content.draftQuote}”</blockquote>
           <p className={`body18 ${styles.description}`}>{content.description}</p>
         </div>
       </div>
@@ -40,7 +38,7 @@ export default function Team({ content: team, founder }: { content: typeof page.
         </div>
         <ul className={styles.grid}>
           <li className={`${styles.role} card-lift`}>
-            <FounderPhoto founder={founder} />
+            <div className={styles.art} aria-hidden="true">FH</div>
             <h3>{founder.name}</h3>
             <p>Founder</p>
           </li>

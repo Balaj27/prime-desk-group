@@ -1,129 +1,53 @@
 .section {
-  padding: 80px 30px;
-  overflow: clip;
+  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 60px);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 56px;
-}
-
-.description {
-  width: 305px;
-  color: var(--gray-115);
-  text-align: end;
-}
-
-.columns {
+.layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+  gap: 24px clamp(24px, 5vw, 64px);
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.header { grid-column: 1 / -1; }
+
+.header p {
+  margin-bottom: 10px;
+  color: #004fcb;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.image {
-  position: relative;
-  aspect-ratio: 1.686;
+.art {
+  min-height: 220px;
+  align-self: center;
+  aspect-ratio: 1.25;
   border-radius: 16px;
-  overflow: hidden;
+  background: linear-gradient(164deg, #193775 0 61%, #0066fa 61% 64%, #173268 64% 72%, #0d1c50 72%);
 }
 
-.image img {
-  object-fit: cover;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
+.values {
+  display: grid;
   gap: 24px;
-  min-height: 246px;
-  padding: 32px;
 }
 
-/* The card beside the image matches its height, so the rows below line up. */
-.column:nth-child(2) .card:first-child {
-  justify-content: center;
-  aspect-ratio: 1.686;
+.values article {
+  padding-top: 14px;
+  border-top: 2px solid var(--accent);
 }
 
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.values h3 { font-size: 1.375rem; }
 
-.text h3 {
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 600;
-}
-
-.text p {
-  font-size: 16px;
-  line-height: 27.2px;
+.values p {
+  margin-top: 6px;
   color: var(--gray-115);
+  line-height: 1.5;
 }
 
-@media (min-width: 1200px) and (max-width: 1439.98px) {
-  .section[data-tablet-until-1440="true"] {
-    padding: 0 30px;
-  }
-}
-
-@media (max-width: 1199.98px) {
-  .section {
-    padding: 0 30px;
-  }
-}
-
-@media (max-width: 809.98px) {
-  .section {
-    padding: 0 20px;
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 56px;
-  }
-
-  .description {
-    width: 100%;
-    text-align: start;
-  }
-
-  .columns {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .card {
-    gap: 16px;
-    min-height: 0;
-    padding: 0;
-  }
-
-  .column:nth-child(2) .card:first-child {
-    aspect-ratio: auto;
-  }
-
-  .column {
-    gap: 32px;
-  }
-
-  .columns {
-    gap: 32px;
-  }
+@media (max-width: 650px) {
+  .layout { grid-template-columns: 1fr; }
+  .art { min-height: 0; aspect-ratio: 1.8; }
 }

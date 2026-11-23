@@ -30,7 +30,7 @@ export default function AboutPage() {
       <WhyPrimeDesk content={page.different} />
       <Team content={page.team} founder={page.founder} />
       <ClientLogos logos={approvedClientLogos} />
-      <Cta content={page.cta} portfolioHref="/PrimeDesk-Portfolio.pdf" variant="banner" />
+      <Cta content={page.cta} />
     </PageShell>
   );
 }

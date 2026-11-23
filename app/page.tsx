@@ -33,7 +33,7 @@ export default function Home() {
       <Services content={content.services} layout="numbered" />
       <Faq content={content.faq} />
       <ClientLogos logos={approvedClientLogos} />
-      <Cta content={content.cta} portfolioHref="/PrimeDesk-Portfolio.pdf" />
+      <Cta content={content.cta} />
     </PageShell>
   );
 }

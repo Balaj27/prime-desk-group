@@ -35,7 +35,7 @@
       ]
     },
     "closing": {
-      "image": "/images/cta-shape.webp",
+
       "heading": "Not sure what you need?",
       "description": "Book a call. We'll look at where you are and tell you where to start."
     }
@@ -143,7 +143,7 @@
       ]
     },
     "cta": {
-      "image": "/images/cta-shape.webp",
+
       "heading": "Ready for a marketing team that works inside yours?",
       "description": "Book a call. We’ll ask about your business and tell you where we’d start."
     }
@@ -202,8 +202,8 @@
       "items": [
         {
           "label": "Email",
-          "title": "contact@primedeskgroup.com",
-          "href": "mailto:contact@primedeskgroup.com",
+          "title": "fareed.huda@primedeskgroup.com",
+          "href": "mailto:fareed.huda@primedeskgroup.com",
           "note": "We aim to reply within 24 hours"
         },
         {

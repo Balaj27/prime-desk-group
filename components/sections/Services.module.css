@@ -111,7 +111,7 @@
   aspect-ratio: 1.48;
   isolation: isolate;
   border-radius: 12px;
-  background: #101f51;
+  background: linear-gradient(164deg, #193775 0 61%, #0066fa 61% 64%, #173268 64% 72%, #0d1c50 72%);
 }
 
 .picture img {

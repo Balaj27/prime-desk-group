@@ -359,9 +359,9 @@
     ]
   },
   "cta": {
-    "image": "/images/cta-shape.webp",
+
     "heading": "Ready for a marketing team that works inside yours?",
-    "description": "Tell us about your business. We'll tell you where we'd start."
+    "description": "Book a call and we'll tell you honestly where we'd start."
   },
   "footer": {
     "name": "PrimeDesk",
@@ -409,8 +409,8 @@
         },
         {
           "icon": "/images/icon-email.svg",
-          "label": "contact@primedeskgroup.com",
-          "href": "mailto:contact@primedeskgroup.com",
+          "label": "fareed.huda@primedeskgroup.com",
+          "href": "mailto:fareed.huda@primedeskgroup.com",
           "note": "We aim to reply in 24 hours"
         }
       ]

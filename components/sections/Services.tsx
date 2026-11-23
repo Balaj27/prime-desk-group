@@ -12,6 +12,7 @@ type Props = {
 export default function Services({ content: services, layout = "illustrated", intro }: Props) {
   const numbered = layout !== "illustrated";
   const showPhotos = layout !== "numbered";
+  const photoServices = new Set(["digital-marketing", "events-pr"]);
   const heading = intro?.heading ?? (numbered ? "Everything your business needs to be" : services.heading);
   const accent = intro?.accent ?? (numbered ? "marketed, built, presented, and staffed." : undefined);
 
@@ -39,8 +40,8 @@ export default function Services({ content: services, layout = "illustrated", in
               {item.offerings.map((offering) => <li key={offering}>{offering}</li>)}
             </ul>
             {showPhotos && (
-              <div className={styles.picture}>
-                <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 650px) 80vw, (max-width: 950px) 33vw, 265px" quality={85} />
+              <div className={styles.picture} aria-hidden={photoServices.has(item.id) ? undefined : true}>
+                {photoServices.has(item.id) && <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 650px) 80vw, (max-width: 950px) 33vw, 265px" quality={85} />}
               </div>
             )}
           </article>

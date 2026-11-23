@@ -7,7 +7,7 @@ export const site = {
   legalName: "PrimeDesk Business Solutions",
   phone: "+18328198366",
   phoneDisplay: "+1 (832) 819-8366",
-  email: "contact@primedeskgroup.com",
+  email: "fareed.huda@primedeskgroup.com",
   city: "Houston",
   region: "TX",
   country: "US",
