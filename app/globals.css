@@ -13,6 +13,8 @@
   --gray-212: #d4d4d4;
   --card: #fbfaf9;
   --pill: #e9e5dd;
+  --content-width: 1200px;
+  --content-gutter: clamp(20px, 6.6vw, 96px);
   --nav-height: 108px;
 }
 

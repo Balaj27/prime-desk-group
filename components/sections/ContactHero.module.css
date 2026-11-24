@@ -1,9 +1,9 @@
 .section {
-  padding: clamp(36px, 6svh, 66px) clamp(20px, 6.6vw, 96px) clamp(54px, 8vw, 100px);
+  padding: clamp(36px, 6svh, 66px) var(--content-gutter) clamp(54px, 8vw, 100px);
 }
 
 .container {
-  max-width: 1260px;
+  max-width: var(--content-width);
   margin-inline: auto;
 }
 

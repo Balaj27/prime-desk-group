@@ -4,14 +4,10 @@
       "eyebrow": "Services",
       "headlineLines": [
         {
-          "text": "Everything your"
+          "text": "Everything your business needs,"
         },
         {
-          "text": "business needs,",
-          "accent": "in"
-        },
-        {
-          "accent": "one place."
+          "accent": "in one place."
         }
       ],
       "description": "Hire us for the whole thing or for one service. Either way, we learn your business before we do the work."
@@ -21,21 +17,7 @@
       "accent": "off your plate.",
       "description": "Each one stands alone. Most clients start with one or two and add more as they grow."
     },
-    "digitalMarketing": {
-      "summary": "Strategy and execution that turns visibility into leads, not just impressions.",
-      "image": "/images/service-social-profile.webp",
-      "imageAlt": "A phone displays a local ceramics shop’s Instagram profile in blue light",
-      "offerings": [
-        "Social media strategy and management",
-        "Social content, reels and short-form video",
-        "Meta and Google ads",
-        "Email marketing",
-        "Local SEO, citations and reviews",
-        "Lead generation and monthly reporting"
-      ]
-    },
     "closing": {
-
       "heading": "Not sure what you need?",
       "description": "Book a call. We'll look at where you are and tell you where to start."
     }
@@ -143,7 +125,6 @@
       ]
     },
     "cta": {
-
       "heading": "Ready for a marketing team that works inside yours?",
       "description": "Book a call. We’ll ask about your business and tell you where we’d start."
     }

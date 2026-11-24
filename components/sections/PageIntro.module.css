@@ -1,10 +1,10 @@
 .section {
-  padding: 80px 30px;
+  padding: 80px var(--content-gutter);
   overflow: clip;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
@@ -23,6 +23,6 @@
 @media (max-width: 809.98px) {
   .section {
     --statement-row-gap: 20px;
-    padding: 44px 20px 80px;
+    padding: 44px var(--content-gutter) 80px;
   }
 }

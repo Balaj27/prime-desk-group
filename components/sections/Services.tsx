@@ -18,7 +18,7 @@ export default function Services({ content: services, layout = "illustrated", in
 
   return (
     <section className={styles.section} data-layout={layout} aria-labelledby="services-heading">
-      {numbered && <p className={styles.eyebrow}>{services.heading}</p>}
+      {layout === "numbered" && <p className={styles.eyebrow}>{services.heading}</p>}
       <h2 id="services-heading" className="h1">
         {heading}{accent && <> <span className={styles.accent}>{accent}</span></>}
       </h2>
@@ -29,12 +29,11 @@ export default function Services({ content: services, layout = "illustrated", in
             {numbered && <span className={styles.number} aria-hidden="true">{item.number}</span>}
             <div className={styles.label}>
               <p className={styles.serviceName}>
-                {layout === "numbered-photos" && <span aria-hidden="true">{item.number} · </span>}
                 {item.title}
               </p>
               <h3>{item.outcome}</h3>
               <p>{item.summary}</p>
-              <Button href={`/contact?service=${encodeURIComponent(item.contactOption)}`} label="Book a call about this" variant={numbered ? "planLight" : "red"} />
+              <Button href={`/contact?service=${encodeURIComponent(item.contactOption)}`} label="Ask about this" variant={numbered ? "planLight" : "red"} />
             </div>
             <ul className={styles.offerings}>
               {item.offerings.map((offering) => <li key={offering}>{offering}</li>)}

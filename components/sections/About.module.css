@@ -1,5 +1,5 @@
 .section {
-  padding: 80px 30px;
+  padding: 80px var(--content-gutter);
   overflow: clip;
 }
 
@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
@@ -29,7 +29,7 @@
 
 @media (max-width: 1199.98px) {
   .section {
-    padding: 80px 30px;
+    padding: 80px var(--content-gutter);
   }
 
   .statement {
@@ -40,7 +40,7 @@
 
 @media (max-width: 809.98px) {
   .section {
-    padding: 80px 20px;
+    padding: 80px var(--content-gutter);
   }
 
   .container {

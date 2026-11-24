@@ -16,7 +16,7 @@ export default function Footer({ content: footer }: Props) {
           </div>
         </div>
 
-        <div className={styles.columns}>
+        <div className={styles.columns} data-scroll-group>
           {footer.columns.map((column) => (
             <div key={column.title} className={styles.column}>
               <p className={styles.columnTitle}>{column.title}</p>

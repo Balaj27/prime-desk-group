@@ -65,7 +65,13 @@
     },
     "checklist": {
       "heading": "Your marketing, handled",
-      "items": ["Website", "Instagram & content", "Ads & local search", "Reviews", "Brand & brochures"]
+      "items": [
+        "Website",
+        "Instagram & content",
+        "Ads & local search",
+        "Reviews",
+        "Brand & brochures"
+      ]
     },
     "description": "Make the best product you can. We'll handle everything it takes for customers to find you: your website, your Instagram, your ads, your reviews. A full marketing team, without hiring one.",
     "secondaryCta": {
@@ -73,9 +79,16 @@
       "href": "/services"
     },
     "headlineLines": [
-      { "text": "You run the" },
-      { "text": "business.", "accent": "We run" },
-      { "accent": "the marketing." }
+      {
+        "text": "You run the"
+      },
+      {
+        "text": "business.",
+        "accent": "We run"
+      },
+      {
+        "accent": "the marketing."
+      }
     ]
   },
   "brandTicker": [
@@ -220,16 +233,16 @@
       {
         "number": "01",
         "title": "Digital Marketing",
-        "summary": "Turn visibility into leads with targeted campaigns and content.",
-        "image": "/images/service-digital-marketing.webp",
-        "imageAlt": "Pink perfume bottle among clouds and floating bubbles",
+        "summary": "Strategy and execution that turns visibility into leads, not just impressions.",
+        "image": "/images/service-social-profile.webp",
+        "imageAlt": "A phone displays a local ceramics shop’s Instagram profile in blue light",
         "offerings": [
           "Social media strategy and management",
-          "Social content, reels, and short-form video",
-          "Meta and Google advertising and optimization",
+          "Social content, reels and short-form video",
+          "Meta and Google ads",
           "Email marketing",
-          "Local SEO, citations, and review management",
-          "Digital strategy, lead generation, and reporting"
+          "Local SEO, citations and reviews",
+          "Lead generation and monthly reporting"
         ],
         "category": "Service",
         "contactOption": "Digital marketing",
@@ -359,7 +372,6 @@
     ]
   },
   "cta": {
-
     "heading": "Ready for a marketing team that works inside yours?",
     "description": "Book a call and we'll tell you honestly where we'd start."
   },
@@ -370,6 +382,10 @@
       {
         "title": "Main Pages",
         "links": [
+          {
+            "label": "Home",
+            "href": "/"
+          },
           {
             "label": "About",
             "href": "/about"

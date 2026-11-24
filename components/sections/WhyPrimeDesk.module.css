@@ -1,7 +1,7 @@
 .section {
   position: relative;
   isolation: isolate;
-  padding: clamp(65px, 9vw, 122px) clamp(20px, 6.6vw, 96px) clamp(56px, 8vw, 110px);
+  padding: clamp(65px, 9vw, 122px) var(--content-gutter) clamp(56px, 8vw, 110px);
   color: var(--white);
 }
 
@@ -24,7 +24,7 @@
 }
 
 .container {
-  max-width: 1260px;
+  max-width: var(--content-width);
   margin-inline: auto;
 }
 

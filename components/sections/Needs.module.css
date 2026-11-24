@@ -1,10 +1,10 @@
 .section {
-  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 60px);
+  padding: clamp(56px, 8vw, 104px) var(--content-gutter);
   background: var(--pill);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--content-width);
   margin-inline: auto;
 }
 
@@ -65,8 +65,11 @@
 }
 
 .detail {
-  margin-top: auto;
   line-height: 1.5;
+}
+
+@media (min-width: 550px) {
+  .card h3 { min-block-size: 2.24em; }
 }
 
 @media (max-width: 899px) {

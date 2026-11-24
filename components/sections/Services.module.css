@@ -1,7 +1,7 @@
 .section {
-  max-width: 1320px;
+  max-width: calc(var(--content-width) + 2 * var(--content-gutter));
   margin-inline: auto;
-  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 60px);
+  padding: clamp(56px, 8vw, 104px) var(--content-gutter);
 }
 
 .eyebrow {

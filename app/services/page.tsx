@@ -10,12 +10,7 @@ import { breadcrumbSchema, servicesSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
 
 const page = pages.services;
-const services = {
-  ...landing.services,
-  items: landing.services.items.map((item) =>
-    item.id === "digital-marketing" ? { ...item, ...page.digitalMarketing } : item,
-  ),
-};
+const services = landing.services;
 
 export const metadata = pageMetadata({
   title: "Marketing, Web, Brand & Support Services | PrimeDesk",

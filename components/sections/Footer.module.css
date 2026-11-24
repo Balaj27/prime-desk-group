@@ -1,5 +1,5 @@
 .footer {
-  padding: 80px 30px 30px;
+  padding: 80px var(--content-gutter) 30px;
   background: var(--ink);
   color: var(--white);
   overflow: clip;
@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 56px;
-  max-width: 1360px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
@@ -45,6 +45,7 @@
 
 .columns {
   display: flex;
+  align-items: start;
   justify-content: space-between;
 }
 
@@ -55,10 +56,11 @@
 }
 
 .columnTitle {
+  margin: 0;
   font-size: 18px;
   line-height: 27px;
   font-weight: 600;
-  color: var(--gray-161);
+  color: var(--bg);
 }
 
 .list {
@@ -115,10 +117,6 @@
 }
 
 @media (max-width: 809.98px) {
-  .footer {
-    padding: 80px 20px 30px;
-  }
-
   .container {
     gap: 40px;
   }
@@ -148,7 +146,7 @@
   .columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 36px 10px;
-    width: calc(95.76% + 10.8px);
+    width: 100%;
     margin-inline: auto;
   }
 
@@ -163,7 +161,6 @@
 
   .contactColumn {
     grid-column: 1 / -1;
-    margin-left: min(0px, calc(-2.12% + 5.4px));
   }
 }
 

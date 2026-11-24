@@ -2,7 +2,7 @@
   position: relative;
   overflow: clip;
   isolation: isolate;
-  padding: clamp(68px, 9vw, 118px) clamp(20px, 6.6vw, 96px) clamp(52px, 8vw, 105px);
+  padding: clamp(68px, 9vw, 118px) var(--content-gutter) clamp(52px, 8vw, 105px);
   color: var(--white);
   text-align: start;
 }
@@ -26,7 +26,7 @@
 }
 
 .section .title {
-  max-width: 1260px;
+  max-width: var(--content-width);
   margin-inline: auto;
   display: grid;
   gap: 18px;

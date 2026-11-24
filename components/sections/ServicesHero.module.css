@@ -1,9 +1,9 @@
 .section {
-  padding: clamp(24px, 6svh, 56px) clamp(20px, 6.6vw, 96px) clamp(28px, 6svh, 64px);
+  padding: clamp(24px, 6svh, 56px) var(--content-gutter) clamp(28px, 6svh, 64px);
 }
 
 .container {
-  max-width: 1260px;
+  max-width: var(--content-width);
   margin-inline: auto;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .heading {
-  font-size: clamp(2.65rem, min(9.2vw, 14.5svh), 8.5rem);
+  font-size: clamp(2.65rem, min(6vw, 14.5svh), 6rem);
   line-height: 0.91;
   letter-spacing: -0.055em;
   overflow-wrap: anywhere;

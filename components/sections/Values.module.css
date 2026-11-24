@@ -1,12 +1,12 @@
 .section {
-  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 60px);
+  padding: clamp(56px, 8vw, 104px) var(--content-gutter);
 }
 
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
   gap: 24px clamp(24px, 5vw, 64px);
-  max-width: 1200px;
+  max-width: var(--content-width);
   margin-inline: auto;
 }
 

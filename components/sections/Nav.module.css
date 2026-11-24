@@ -84,10 +84,20 @@
     width: clamp(36px, 11vw, 48px);
   }
 
-  .links,
-  .cta {
+  .links {
     display: none;
   }
+
+  .container { gap: 6px; }
+  .cta { margin-inline-start: auto; }
+
+  .cta a {
+    height: 44px;
+    padding-inline: 11px;
+    font-size: 0.875rem;
+  }
+
+  .cta a > [aria-hidden="true"] { display: none; }
 
   .menuButton {
     display: inline-flex;

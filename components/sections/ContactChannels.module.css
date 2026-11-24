@@ -30,6 +30,10 @@
   text-decoration: underline;
 }
 
+.emailPart {
+  white-space: nowrap;
+}
+
 .list .note {
   margin-top: 3px;
   color: var(--gray-115);
