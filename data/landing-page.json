@@ -249,8 +249,8 @@
         "number": "02",
         "title": "Web & Creative",
         "summary": "A website and creative assets that make your business easy to find and recognize.",
-        "image": "/images/service-visual-identity.webp",
-        "imageAlt": "A silhouetted figure stands in a wildflower field at dusk",
+        "image": "/images/service-web-design.webp",
+        "imageAlt": "A laptop and phone display matching layouts for a small shop’s website",
         "offerings": [
           "Website design and development",
           "Website SEO and content writing",
@@ -265,8 +265,8 @@
         "number": "03",
         "title": "Brand & Documentation",
         "summary": "Brand assets and documents that give customers a consistent impression.",
-        "image": "/images/service-brand-strategy.webp",
-        "imageAlt": "Sunlight casts prisms across an office floor and foliage",
+        "image": "/images/service-brand-collateral.webp",
+        "imageAlt": "A printed brand guide, brochure, business cards, and color swatches",
         "offerings": [
           "Logo design and brand identity",
           "Brand guidelines and branding assets",
@@ -282,8 +282,8 @@
         "number": "04",
         "title": "Business Support",
         "summary": "More capacity when you need it, without expanding your permanent team.",
-        "image": "/images/service-media-planning.webp",
-        "imageAlt": "A wall of monitors shows colorful horizontal patterns",
+        "image": "/images/service-crm-workspace.webp",
+        "imageAlt": "A laptop displays a lead pipeline beside a paper checklist",
         "offerings": [
           "Staff augmentation for expanding workloads",
           "Virtual assistant and day-to-day admin support",
@@ -298,8 +298,8 @@
         "number": "05",
         "title": "Events & PR",
         "summary": "Get the word out through events and media coverage, remotely or in person.",
-        "image": "/images/service-events-pr.webp",
-        "imageAlt": "A moderator speaks into a microphone during a panel discussion",
+        "image": "/images/service-panel-stage.webp",
+        "imageAlt": "A microphone and two chairs set on a blue-lit stage for a panel discussion",
         "offerings": [
           "Event planning and support",
           "Influencer relations",
