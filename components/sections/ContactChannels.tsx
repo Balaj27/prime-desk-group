@@ -8,7 +8,8 @@ function EmailAddress({ address }: { address: string }) {
 
 export default function ContactChannels({ content }: { content: typeof page.contact.channels }) {
   return (
-    <section className={styles.card} aria-label={content.heading} data-scroll-group>
+    <section className={styles.card} aria-labelledby="contact-details-heading" data-scroll-group>
+      <h2 id="contact-details-heading" className={styles.heading}>{content.heading}</h2>
       <dl className={styles.list}>
         {content.items.map((item) => (
           <div key={item.label}>
@@ -20,7 +21,6 @@ export default function ContactChannels({ content }: { content: typeof page.cont
                 </a>
               ) : item.title}
             </dd>
-            {item.note && <dd className={styles.note}>{item.note}</dd>}
           </div>
         ))}
       </dl>

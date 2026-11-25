@@ -37,7 +37,7 @@ export default function Footer({ content: footer }: Props) {
                   <Image src={item.icon} alt="" width={40} height={40} unoptimized />
                   <div>
                     <a href={item.href}>{item.label}</a>
-                    <p>{item.note}</p>
+                    {item.note && <p>{item.note}</p>}
                   </div>
                 </li>
               ))}

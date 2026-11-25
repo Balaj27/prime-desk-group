@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import BookingButton from "@/components/ui/BookingButton";
 import type page from "@/data/pages.json";
-import { getContactError } from "@/lib/contact";
+import { CONTACT_NAME_MAX_LENGTH, getContactError } from "@/lib/contact";
 import { trackConversion } from "@/lib/conversions";
 import styles from "./ContactHero.module.css";
 
@@ -15,6 +14,7 @@ export default function ContactHero({ content: hero, details }: Props) {
   const [step, setStep] = useState(0);
   const [needs, setNeeds] = useState<string[]>([]);
   const [goal, setGoal] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [answerError, setAnswerError] = useState("");
@@ -55,6 +55,12 @@ export default function ContactHero({ content: hero, details }: Props) {
       return;
     }
 
+    const contactName = name.trim();
+    if (!contactName) {
+      setAnswerError("Enter your name.");
+      return;
+    }
+
     const replyEmail = email.trim();
     const replyPhone = phone.trim();
     const contactError = getContactError(replyEmail, replyPhone);
@@ -69,7 +75,7 @@ export default function ContactHero({ content: hero, details }: Props) {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ needs, goal, email: replyEmail, phone: replyPhone, website }),
+        body: JSON.stringify({ needs, goal, name: contactName, email: replyEmail, phone: replyPhone, website }),
       });
       if (!response.ok) throw new Error("Request failed");
       setStatus("sent");
@@ -82,8 +88,9 @@ export default function ContactHero({ content: hero, details }: Props) {
 
   const question = [inquiry.needs.question, inquiry.goal.question, inquiry.contact.question][step];
   const contactFields = [
-    { name: "email", type: "email", maxLength: 200, value: email, setValue: setEmail, ...inquiry.contact.email },
-    { name: "phone", type: "tel", maxLength: 40, value: phone, setValue: setPhone, ...inquiry.contact.phone },
+    { name: "name", type: "text", autoComplete: "name", required: true, maxLength: CONTACT_NAME_MAX_LENGTH, value: name, setValue: setName, ...inquiry.contact.name },
+    { name: "email", type: "email", autoComplete: "email", required: false, maxLength: 200, value: email, setValue: setEmail, ...inquiry.contact.email },
+    { name: "phone", type: "tel", autoComplete: "tel", required: false, maxLength: 40, value: phone, setValue: setPhone, ...inquiry.contact.phone },
   ];
 
   return (
@@ -103,10 +110,9 @@ export default function ContactHero({ content: hero, details }: Props) {
                 Message sent
               </h2>
               <p>{inquiry.success}</p>
-              <BookingButton />
             </section>
           ) : (
-            <form className={styles.inquiry} onSubmit={handleSubmit} noValidate={step === 2} aria-labelledby="contact-question">
+            <form className={styles.inquiry} data-step={step} onSubmit={handleSubmit} noValidate={step === 2} aria-labelledby="contact-question">
               <header className={styles.inquiryHeader}>
                 <div className={styles.progress}>
                   <p id="contact-step" className={styles.step}>Question {step + 1} of 3</p>
@@ -172,14 +178,15 @@ export default function ContactHero({ content: hero, details }: Props) {
                 {step === 2 && (
                   <fieldset className={styles.methods} aria-labelledby="contact-question" aria-describedby="contact-methods-hint contact-inquiry-error">
                     <p id="contact-methods-hint" className={styles.hint}>{inquiry.contact.hint}</p>
-                    {contactFields.map(({ name, type, label, placeholder, maxLength, value, setValue }) => (
+                    {contactFields.map(({ name, type, autoComplete, required, label, placeholder, maxLength, value, setValue }) => (
                       <label key={name} className={styles.field}>
-                        <span>{label}</span>
+                        <span>{label}{required && " *"}</span>
                         <input
                           id={`contact-${name}`}
                           type={type}
                           name={name}
-                          autoComplete={type}
+                          autoComplete={autoComplete}
+                          required={required}
                           maxLength={maxLength}
                           placeholder={placeholder}
                           value={value}
@@ -214,16 +221,7 @@ export default function ContactHero({ content: hero, details }: Props) {
               </footer>
             </form>
           )}
-          <aside className={styles.sidebar} aria-label="Other ways to get in touch">
-            <section className={styles.booking} aria-labelledby="contact-booking-heading" data-scroll-group>
-              <svg className={styles.calendarIcon} viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="16" rx="2" />
-                <path d="M7 3v4M17 3v4M3 10h18" />
-              </svg>
-              <h2 id="contact-booking-heading" className={styles.cardHeading}>{hero.booking.heading}</h2>
-              <p>{hero.booking.description}</p>
-              <BookingButton variant="white" block />
-            </section>
+          <aside aria-label="Other ways to get in touch">
             {details}
           </aside>
         </div>

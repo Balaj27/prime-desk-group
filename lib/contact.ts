@@ -1,4 +1,5 @@
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const CONTACT_NAME_MAX_LENGTH = 120;
 
 const PHONE_PATTERN = /^\+?[\d(). -]+$/;
 

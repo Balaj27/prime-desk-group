@@ -5,6 +5,11 @@
   background: var(--white);
 }
 
+.heading {
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+}
+
 .list {
   display: grid;
   gap: 16px;
@@ -32,11 +37,4 @@
 
 .emailPart {
   white-space: nowrap;
-}
-
-.list .note {
-  margin-top: 3px;
-  color: var(--gray-115);
-  font-size: 0.875rem;
-  font-weight: 500;
 }

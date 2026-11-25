@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { EMAIL_PATTERN, getContactError } from "@/lib/contact";
+import { CONTACT_NAME_MAX_LENGTH, EMAIL_PATTERN, getContactError } from "@/lib/contact";
 import { site } from "@/lib/site";
 
-const MAX_LENGTHS = { name: 120, email: 200, phone: 40, company: 160, message: 4000, goal: 4000 };
+const MAX_LENGTHS = { email: 200, phone: 40, company: 160, message: 4000, goal: 4000 };
 
 const text = (value: unknown, max: number) => (typeof value === "string" ? value.trim().slice(0, max) : "");
 const escapeHtml = (value: string) =>
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   // Bots fill the hidden field: report success and send nothing.
   if (text(body.website, 200)) return NextResponse.json({ ok: true });
 
-  const name = text(body.name, MAX_LENGTHS.name);
+  const name = text(body.name, CONTACT_NAME_MAX_LENGTH);
   const email = text(body.email, MAX_LENGTHS.email);
   const phone = text(body.phone, MAX_LENGTHS.phone);
   const company = text(body.company, MAX_LENGTHS.company);
@@ -33,6 +33,7 @@ export async function POST(request: Request) {
     if (!needs.length || !goal) {
       return NextResponse.json({ error: "Choose what you need help with and enter a goal." }, { status: 400 });
     }
+    if (!name) return NextResponse.json({ error: "Enter your name." }, { status: 400 });
     const contactError = getContactError(email, phone);
     if (contactError) return NextResponse.json({ error: contactError }, { status: 400 });
   } else if (!name || !EMAIL_PATTERN.test(email)) {

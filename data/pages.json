@@ -19,7 +19,7 @@
     },
     "closing": {
       "heading": "Not sure what you need?",
-      "description": "Book a call. We'll look at where you are and tell you where to start."
+      "description": "Tell us where you are and we'll help you decide where to start."
     }
   },
   "about": {
@@ -126,7 +126,7 @@
     },
     "cta": {
       "heading": "Ready for a marketing team that works inside yours?",
-      "description": "Book a call. We’ll ask about your business and tell you where we’d start."
+      "description": "Tell us about your business and we’ll share where we’d start."
     }
   },
   "contact": {
@@ -134,11 +134,7 @@
       "eyebrow": "Contact",
       "heading": "Let's",
       "accent": "talk.",
-      "intro": "Book a call, or send us a note about your business. Either way, a real person gets back to you within a day.",
-      "booking": {
-        "heading": "Rather talk it through?",
-        "description": "Pick a time that suits you. We’ll ask about your business and tell you where we’d start."
-      },
+      "intro": "Send us a note about your business and we'll get back to you.",
       "inquiry": {
         "needs": {
           "question": "What do you want help with?",
@@ -159,6 +155,10 @@
         "contact": {
           "question": "Where can we reach you?",
           "hint": "Share an email address, a phone number, or both.",
+          "name": {
+            "label": "Name",
+            "placeholder": "Your name"
+          },
           "email": {
             "label": "Email address",
             "placeholder": "you@company.com"
@@ -170,28 +170,22 @@
         },
         "submitLabel": "Send message",
         "sendingLabel": "Sending...",
-        "success": "Thanks. We got your message and will be in touch soon. You can also book a call.",
+        "success": "Thanks, we've got your message. We'll be in touch soon.",
         "error": "We couldn't send your message. Please try again, or email us directly."
       }
     },
     "channels": {
-      "heading": "Contact details",
+      "heading": "Fareed Huda",
       "items": [
+        {
+          "label": "Phone",
+          "title": "+1 (832) 819-8366",
+          "href": "tel:+18328198366"
+        },
         {
           "label": "Email",
           "title": "fareed.huda@primedeskgroup.com",
-          "href": "mailto:fareed.huda@primedeskgroup.com",
-          "note": "We aim to reply within 24 hours"
-        },
-        {
-          "label": "Call",
-          "title": "+1 (832) 819-8366",
-          "href": "tel:+18328198366",
-          "note": "Monday to Friday, 9am to 5pm CT"
-        },
-        {
-          "label": "Based in",
-          "title": "Houston, Texas"
+          "href": "mailto:fareed.huda@primedeskgroup.com"
         }
       ]
     }
