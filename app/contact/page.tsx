@@ -14,7 +14,6 @@ export const metadata = pageMetadata({
   title,
   description,
   path: "/contact",
-  image: "/og/contact.jpg",
 });
 
 export default function ContactPage() {

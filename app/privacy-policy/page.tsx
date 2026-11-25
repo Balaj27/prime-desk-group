@@ -10,7 +10,6 @@ export const metadata = pageMetadata({
   title: "Privacy Policy | PrimeDesk",
   description: privacy.description,
   path: "/privacy-policy",
-  image: "/og/home.jpg",
   noindex: true,
 });
 

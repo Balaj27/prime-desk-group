@@ -10,7 +10,6 @@ export const metadata = pageMetadata({
   title: "Terms and Conditions | PrimeDesk",
   description: terms.description,
   path: "/terms-condition",
-  image: "/og/home.jpg",
   noindex: true,
 });
 

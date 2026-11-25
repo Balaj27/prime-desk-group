@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import JsonLd from "@/components/ui/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
-import { site } from "@/lib/site";
+import { shareImage, site } from "@/lib/site";
 import "./globals.css";
 
 const urbanist = localFont({
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: site.description,
   authors: [{ name: site.legalName }],
   formatDetection: { telephone: false },
+  openGraph: { images: [shareImage] },
+  twitter: { card: "summary_large_image", images: [shareImage] },
 };
 
 export const viewport: Viewport = {

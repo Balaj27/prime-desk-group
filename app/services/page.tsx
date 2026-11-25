@@ -16,7 +16,6 @@ export const metadata = pageMetadata({
   title: "Marketing, Web, Brand & Support Services | PrimeDesk",
   description: page.hero.description,
   path: "/services",
-  image: "/og/services.jpg",
 });
 
 export default function ServicesPage() {

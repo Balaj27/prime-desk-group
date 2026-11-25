@@ -18,7 +18,6 @@ export const metadata = pageMetadata({
   title: "PrimeDesk | Marketing Agency for Small Businesses",
   description: site.description,
   path: "/",
-  image: "/og/home.jpg",
 });
 
 export default function Home() {

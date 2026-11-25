@@ -16,23 +16,28 @@ export const site = {
     "PrimeDesk is a Houston marketing team for small businesses. Social, ads, SEO, web, and brand work from one embedded partner.",
 };
 
+export const shareImage = {
+  url: "/og/primedesk-share.png",
+  width: 1200,
+  height: 630,
+  alt: "PrimeDesk — You run the business. We run the marketing. primedeskgroup.com",
+};
+
 type PageMeta = {
   title: string;
   description: string;
   path: string;
-  image: string;
   noindex?: boolean;
 };
 
 /** Title, description, canonical, Open Graph and Twitter tags for one page. */
-export function pageMetadata({ title, description, path, image, noindex = false }: PageMeta): Metadata {
-  const images = [{ url: image, width: 1200, height: 630, alt: title }];
+export function pageMetadata({ title, description, path, noindex = false }: PageMeta): Metadata {
   return {
     title: { absolute: title },
     description,
     alternates: { canonical: path },
     robots: noindex ? { index: false, follow: true } : undefined,
-    openGraph: { type: "website", siteName: site.name, locale: "en_US", url: path, title, description, images },
-    twitter: { card: "summary_large_image", title, description, images: [image] },
+    openGraph: { type: "website", siteName: site.name, locale: "en_US", url: path, title, description, images: [shareImage] },
+    twitter: { card: "summary_large_image", title, description, images: [shareImage] },
   };
 }

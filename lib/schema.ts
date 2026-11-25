@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { shareImage, site } from "@/lib/site";
 
 const organizationId = `${site.url}/#organization`;
 
@@ -10,7 +10,7 @@ export const organizationSchema = {
   legalName: site.legalName,
   url: site.url,
   logo: `${site.url}/icon-512.png`,
-  image: `${site.url}/og/home.jpg`,
+  image: new URL(shareImage.url, site.url).href,
   description: site.description,
   telephone: site.phone,
   email: site.email,

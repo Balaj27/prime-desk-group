@@ -17,7 +17,6 @@ export const metadata = pageMetadata({
   title,
   description: page.hero.statement,
   path: "/about",
-  image: "/og/about.jpg",
 });
 
 export default function AboutPage() {
