@@ -147,19 +147,11 @@
 
 @media (min-width: 661px) {
   .headlineLine { white-space: nowrap; }
-
-  .visual {
-    margin-top: -14px;
-  }
 }
 
 @media (min-width: 1100px) {
   .layout {
     grid-template-columns: minmax(0, 1fr) clamp(235px, 22vw, 350px);
-  }
-
-  .visual {
-    margin-top: -18px;
   }
 }
 
