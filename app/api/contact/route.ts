@@ -1,10 +1,46 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { CONTACT_NAME_MAX_LENGTH, EMAIL_PATTERN, getContactError } from "@/lib/contact";
+import { site } from "@/lib/site";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xyewonwk";
+export const maxDuration = 30;
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/moedrkle";
 const MAX_LENGTHS = { email: 200, phone: 40, company: 160, message: 4000, goal: 4000 };
 
 const text = (value: unknown, max: number) => (typeof value === "string" ? value.trim().slice(0, max) : "");
+
+async function sendThankYou(email: string) {
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_APP_PASSWORD?.replace(/\s/g, "");
+  if (!user || !pass) {
+    console.warn("Contact acknowledgment skipped because SMTP is not configured.");
+    return;
+  }
+
+  const mailer = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user, pass },
+    connectionTimeout: 8000,
+    greetingTimeout: 5000,
+    socketTimeout: 8000,
+  });
+
+  try {
+    await mailer.sendMail({
+      from: { name: "PrimeDesk", address: user },
+      to: { name: "", address: email },
+      replyTo: site.email,
+      subject: "Thanks for your interest in PrimeDesk",
+      text: "Thanks for getting in touch with PrimeDesk. We received your message and will be in touch soon.\n\nThe PrimeDesk team",
+      headers: { "Auto-Submitted": "auto-replied", "X-Auto-Response-Suppress": "All" },
+    });
+  } catch (error) {
+    console.error("Could not send the contact acknowledgment.", error instanceof Error ? error.name : "Unknown error");
+  }
+}
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -53,7 +89,10 @@ export async function POST(request: Request) {
       signal: AbortSignal.timeout(10000),
     });
     const result = await response.json().catch(() => null);
-    if (response.ok && result?.ok === true) return NextResponse.json({ ok: true });
+    if (response.ok && result?.ok === true) {
+      if (email) after(() => sendThankYou(email));
+      return NextResponse.json({ ok: true });
+    }
     console.error("Formspree did not accept the contact submission.", response.status);
   } catch (error) {
     console.error("Could not reach Formspree.", error instanceof Error ? error.name : "Unknown error");
