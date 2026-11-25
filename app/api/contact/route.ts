@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
 import { CONTACT_NAME_MAX_LENGTH, EMAIL_PATTERN, getContactError } from "@/lib/contact";
-import { site } from "@/lib/site";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xyewonwk";
 const MAX_LENGTHS = { email: 200, phone: 40, company: 160, message: 4000, goal: 4000 };
 
 const text = (value: unknown, max: number) => (typeof value === "string" ? value.trim().slice(0, max) : "");
-const escapeHtml = (value: string) =>
-  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -40,41 +38,26 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Name and a valid email are required." }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const sender = process.env.CONTACT_FROM_EMAIL ?? `PrimeDesk Website <${site.email}>`;
-  if (!apiKey) {
-    console.error("Contact form is missing RESEND_API_KEY.");
-    return NextResponse.json({ error: "The contact form is not configured." }, { status: 500 });
+  const submission = new FormData();
+  const fields = { name, email, phone, company, needs: needs.join(", "), goal, message };
+  for (const [field, value] of Object.entries(fields)) {
+    if (value) submission.set(field, value);
+  }
+  submission.set("subject", "PrimeDesk website enquiry from " + name.replace(/[\r\n]+/g, " "));
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: submission,
+      signal: AbortSignal.timeout(10000),
+    });
+    const result = await response.json().catch(() => null);
+    if (response.ok && result?.ok === true) return NextResponse.json({ ok: true });
+    console.error("Formspree did not accept the contact submission.", response.status);
+  } catch (error) {
+    console.error("Could not reach Formspree.", error instanceof Error ? error.name : "Unknown error");
   }
 
-  const rows = [
-    ["Name", name],
-    ["Email", email],
-    ["Phone", phone],
-    ["Company", company],
-    ["Needs help with", needs.join(", ")],
-    ["Main goal", goal],
-    ["Message", message],
-  ].filter(([, value]) => value);
-  const contactName = name.replace(/[\r\n]+/g, " ") || email;
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: sender,
-      to: [site.email],
-      reply_to: email || undefined,
-      subject: contactName ? `New website enquiry from ${contactName}` : "New website enquiry (phone callback)",
-      text: rows.map(([label, value]) => `${label}: ${value}`).join("\n"),
-      html: rows.map(([label, value]) => `<p><strong>${label}:</strong><br>${escapeHtml(value).replace(/\n/g, "<br>")}</p>`).join(""),
-    }),
-  });
-
-  if (!response.ok) {
-    console.error("Resend rejected the contact email.", response.status);
-    return NextResponse.json({ error: "The message could not be sent." }, { status: 502 });
-  }
-
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ error: "The message could not be sent." }, { status: 502 });
 }
