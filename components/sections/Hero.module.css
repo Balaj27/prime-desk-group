@@ -146,6 +146,8 @@
 }
 
 @media (min-width: 661px) {
+  .headlineLine { white-space: nowrap; }
+
   .visual {
     margin-top: -14px;
   }

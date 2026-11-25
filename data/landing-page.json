@@ -80,14 +80,10 @@
     },
     "headlineLines": [
       {
-        "text": "You run the"
+        "text": "You run the business."
       },
       {
-        "text": "business.",
-        "accent": "We run"
-      },
-      {
-        "accent": "the marketing."
+        "accent": "We run the marketing."
       }
     ]
   },
