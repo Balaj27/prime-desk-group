@@ -33,8 +33,8 @@ async function sendThankYou(email: string) {
       from: { name: "PrimeDesk", address: user },
       to: { name: "", address: email },
       replyTo: site.email,
-      subject: "Thanks for your interest in PrimeDesk",
-      text: "Thanks for getting in touch with PrimeDesk. We received your message and will be in touch soon.\n\nThe PrimeDesk team",
+      subject: "Thanks for contacting PrimeDesk",
+      text: "Thanks for filling out the PrimeDesk contact form. We've received your message and will be in touch soon.\n\nThe PrimeDesk team",
       headers: { "Auto-Submitted": "auto-replied", "X-Auto-Response-Suppress": "All" },
     });
   } catch (error) {
@@ -75,7 +75,8 @@ export async function POST(request: Request) {
   }
 
   const submission = new FormData();
-  const fields = { name, email, phone, company, needs: needs.join(", "), goal, message };
+  // Keep the address in the lead record without triggering Formspree's autoresponse.
+  const fields = { name, lead_email: email, phone, company, needs: needs.join(", "), goal, message };
   for (const [field, value] of Object.entries(fields)) {
     if (value) submission.set(field, value);
   }
