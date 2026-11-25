@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/site";
 
 const page = pages.contact;
 const title = "Contact PrimeDesk | Book a Call";
-const description = "Contact PrimeDesk in Houston by phone, email, or through our online form.";
+const description = "Contact PrimeDesk in Houston by phone or email, or answer three quick questions about what you need.";
 
 export const metadata = pageMetadata({
   title,

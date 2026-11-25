@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import { EMAIL_PATTERN, getContactError } from "@/lib/contact";
 import { site } from "@/lib/site";
 
-const MAX_LENGTHS = { name: 120, email: 200, phone: 40, company: 160, message: 4000 };
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_LENGTHS = { name: 120, email: 200, phone: 40, company: 160, message: 4000, goal: 4000 };
 
 const text = (value: unknown, max: number) => (typeof value === "string" ? value.trim().slice(0, max) : "");
 const escapeHtml = (value: string) =>
@@ -11,7 +11,9 @@ const escapeHtml = (value: string) =>
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
-    body = await request.json();
+    const data: unknown = await request.json();
+    if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("Invalid request body");
+    body = data as Record<string, unknown>;
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
@@ -24,9 +26,16 @@ export async function POST(request: Request) {
   const phone = text(body.phone, MAX_LENGTHS.phone);
   const company = text(body.company, MAX_LENGTHS.company);
   const message = text(body.message, MAX_LENGTHS.message);
+  const goal = text(body.goal, MAX_LENGTHS.goal);
   const needs = Array.isArray(body.needs) ? body.needs.map((need) => text(need, 80)).filter(Boolean).slice(0, 10) : [];
 
-  if (!name || !EMAIL_PATTERN.test(email)) {
+  if ("goal" in body) {
+    if (!needs.length || !goal) {
+      return NextResponse.json({ error: "Choose what you need help with and enter a goal." }, { status: 400 });
+    }
+    const contactError = getContactError(email, phone);
+    if (contactError) return NextResponse.json({ error: contactError }, { status: 400 });
+  } else if (!name || !EMAIL_PATTERN.test(email)) {
     return NextResponse.json({ error: "Name and a valid email are required." }, { status: 400 });
   }
 
@@ -43,8 +52,10 @@ export async function POST(request: Request) {
     ["Phone", phone],
     ["Company", company],
     ["Needs help with", needs.join(", ")],
+    ["Main goal", goal],
     ["Message", message],
   ].filter(([, value]) => value);
+  const contactName = name.replace(/[\r\n]+/g, " ") || email;
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -52,8 +63,8 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       from: sender,
       to: [site.email],
-      reply_to: email,
-      subject: `New website enquiry from ${name.replace(/[\r\n]+/g, " ")}`,
+      reply_to: email || undefined,
+      subject: contactName ? `New website enquiry from ${contactName}` : "New website enquiry (phone callback)",
       text: rows.map(([label, value]) => `${label}: ${value}`).join("\n"),
       html: rows.map(([label, value]) => `<p><strong>${label}:</strong><br>${escapeHtml(value).replace(/\n/g, "<br>")}</p>`).join(""),
     }),

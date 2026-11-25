@@ -139,26 +139,9 @@
         "heading": "Rather talk it through?",
         "description": "Pick a time that suits you. We’ll ask about your business and tell you where we’d start."
       },
-      "form": {
-        "heading": "Send us a note",
-        "name": {
-          "label": "Name",
-          "placeholder": "Your name"
-        },
-        "email": {
-          "label": "Email",
-          "placeholder": "you@company.com"
-        },
-        "phone": {
-          "label": "Phone",
-          "placeholder": "Your phone number"
-        },
-        "company": {
-          "label": "Business name",
-          "placeholder": "Your business name"
-        },
+      "inquiry": {
         "needs": {
-          "label": "What do you need help with?",
+          "question": "What do you want help with?",
           "options": [
             "Digital marketing",
             "Web and creative",
@@ -168,9 +151,22 @@
             "Not sure yet"
           ]
         },
-        "message": {
-          "label": "Anything else we should know?",
-          "placeholder": "Type here..."
+        "goal": {
+          "question": "What's your main goal?",
+          "hint": "Tell us what you want to achieve and include a deadline if you have one.",
+          "placeholder": "For example, we want to launch a new site before our spring campaign."
+        },
+        "contact": {
+          "question": "Where can we reach you?",
+          "hint": "Share an email address, a phone number, or both.",
+          "email": {
+            "label": "Email address",
+            "placeholder": "you@company.com"
+          },
+          "phone": {
+            "label": "Phone number",
+            "placeholder": "+1 (555) 123-4567"
+          }
         },
         "submitLabel": "Send message",
         "sendingLabel": "Sending...",
