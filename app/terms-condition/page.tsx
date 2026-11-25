@@ -1,15 +1,13 @@
-import Cta from "@/components/sections/Cta";
 import LegalContent from "@/components/sections/LegalContent";
 import PageShell from "@/components/sections/PageShell";
-import landing from "@/data/landing-page.json";
 import pages from "@/data/pages.json";
 import { pageMetadata } from "@/lib/site";
 
-const { terms, shared } = pages.legal;
+const { terms } = pages.legal;
 
-// Stays out of search results until the final terms text is added.
+// Keep the draft out of search results pending approval.
 export const metadata = pageMetadata({
-  title: "Terms & Conditions | PrimeDesk",
+  title: "Terms and Conditions | PrimeDesk",
   description: terms.description,
   path: "/terms-condition",
   image: "/og/home.jpg",
@@ -19,8 +17,7 @@ export const metadata = pageMetadata({
 export default function TermsPage() {
   return (
     <PageShell>
-      <LegalContent content={terms} cta={shared.cta} />
-      <Cta content={landing.cta} />
+      <LegalContent content={terms} />
     </PageShell>
   );
 }

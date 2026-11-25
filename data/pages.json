@@ -194,44 +194,197 @@
     "privacy": {
       "heading": "Privacy Policy",
       "description": "How PrimeDesk collects, uses, and protects your information.",
-      "updatedLabel": "Last Updated:",
-      "separator": "|",
-      "note": "Please read carefully before using our services",
+      "updated": "2026-11-25",
+      "intro": "This policy explains what information PrimeDesk Business Solutions (\"PrimeDesk\", \"we\", \"us\") collects through primedeskgroup.com, how we use it, and the choices you have. We're a marketing studio based in Houston, Texas.",
       "rows": [
         {
-          "heading": "Privacy Policy",
+          "heading": "What we collect",
           "blocks": [
             {
-              "text": "Our privacy policy is being finalized and will be published here. For questions in the meantime, please contact us."
+              "text": "Information you give us. When you fill in our contact form, we collect your name, your email address and/or phone number, the services you're interested in, and anything you tell us about your goals. If you email or call us, we receive whatever you choose to share."
+            },
+            {
+              "text": "Information collected automatically. Like most websites, our hosting provider records basic technical information when you visit, such as your browser type, device and the pages you view."
             }
-          ],
-          "cta": true
+          ]
+        },
+        {
+          "heading": "How we use it",
+          "blocks": [
+            {
+              "items": [
+                "To reply to your enquiry and talk with you about working together",
+                "To keep a record of our conversations with prospective and current clients",
+                "To understand how our website is used and improve it"
+              ]
+            },
+            {
+              "text": "We don't use your information for anything unrelated to these purposes, and we don't sell it."
+            }
+          ]
+        },
+        {
+          "heading": "Who we share it with",
+          "blocks": [
+            {
+              "text": "We share information only with service providers that help us run the website and our business, such as our website host (Vercel), our form service (Formspree) and our email provider (Google Workspace). These providers may only use your information to provide their service to us."
+            },
+            {
+              "text": "We may also share information if required by law, or to protect our rights."
+            }
+          ]
+        },
+        {
+          "heading": "Cookies",
+          "blocks": [
+            {
+              "text": "Our website does not use cookies for tracking or advertising."
+            }
+          ]
+        },
+        {
+          "heading": "How long we keep it",
+          "blocks": [
+            {
+              "text": "We keep enquiry information for as long as we need it to follow up with you, or for as long as we work together, and then delete it unless we need to keep it for legal or accounting reasons. You can ask us to delete it at any time."
+            }
+          ]
+        },
+        {
+          "heading": "Your choices",
+          "blocks": [
+            {
+              "text": "You can ask us to see, correct or delete the personal information we hold about you by emailing fareed.huda@primedeskgroup.com. We'll respond as soon as we reasonably can."
+            }
+          ]
+        },
+        {
+          "heading": "Children",
+          "blocks": [
+            {
+              "text": "Our website and services are for businesses and are not directed at children under 13. We don't knowingly collect information from them."
+            }
+          ]
+        },
+        {
+          "heading": "Changes to this policy",
+          "blocks": [
+            {
+              "text": "We may update this policy from time to time. When we do, we'll change the \"Last updated\" date at the top of this page."
+            }
+          ]
+        },
+        {
+          "heading": "Contact us",
+          "blocks": [
+            {
+              "text": "Questions about this policy? Email fareed.huda@primedeskgroup.com or call +1 (832) 819-8366."
+            },
+            {
+              "text": "PrimeDesk Business Solutions, Houston, Texas"
+            }
+          ]
         }
       ]
     },
     "terms": {
-      "heading": "Terms & Conditions",
+      "heading": "Terms and Conditions",
       "description": "The terms that apply when you use the PrimeDesk website and services.",
-      "updatedLabel": "Last Updated:",
-      "separator": "|",
-      "note": "Please read carefully before using our services",
+      "updated": "2026-11-25",
+      "intro": "These terms apply to your use of primedeskgroup.com (the \"site\"), run by PrimeDesk Business Solutions (\"PrimeDesk\", \"we\", \"us\"), based in Houston, Texas. By using the site, you agree to them.",
       "rows": [
         {
-          "heading": "Terms & Conditions",
+          "heading": "About this site",
           "blocks": [
             {
-              "text": "Our terms and conditions are being finalized and will be published here. For questions in the meantime, please contact us."
+              "text": "The site gives general information about PrimeDesk and our marketing, creative and business support services. Nothing on it is a binding offer or professional advice for your specific situation."
             }
-          ],
-          "cta": true
+          ]
+        },
+        {
+          "heading": "Our services",
+          "blocks": [
+            {
+              "text": "Any work we do for a client is covered by a separate written agreement. If that agreement differs from these terms, the agreement applies."
+            }
+          ]
+        },
+        {
+          "heading": "No guaranteed results",
+          "blocks": [
+            {
+              "text": "Marketing results depend on many things outside our control, such as your market, budget, competitors and the platforms we use. Examples or descriptions on the site are not a promise of any particular result."
+            }
+          ]
+        },
+        {
+          "heading": "Using the site",
+          "blocks": [
+            {
+              "text": "You agree not to misuse the site. That includes trying to disrupt it, accessing it in unauthorized ways, or sending spam or harmful content through the contact form."
+            }
+          ]
+        },
+        {
+          "heading": "Our content",
+          "blocks": [
+            {
+              "text": "The text, design, logo, images and portfolio on this site belong to PrimeDesk or are used with permission. You may view and share links to them, but you may not copy, reuse or republish them without our written permission."
+            }
+          ]
+        },
+        {
+          "heading": "Links to other sites",
+          "blocks": [
+            {
+              "text": "The site may link to other websites. We don't control them and aren't responsible for their content or practices."
+            }
+          ]
+        },
+        {
+          "heading": "The site is provided \"as is\"",
+          "blocks": [
+            {
+              "text": "We work to keep the site accurate and available, but we can't promise it will always be error-free or uninterrupted. To the fullest extent the law allows, PrimeDesk is not liable for any loss or damage arising from your use of the site."
+            }
+          ]
+        },
+        {
+          "heading": "Privacy",
+          "blocks": [
+            {
+              "text": "How we handle information you share with us is explained in our Privacy Policy."
+            }
+          ]
+        },
+        {
+          "heading": "Governing law",
+          "blocks": [
+            {
+              "text": "These terms are governed by the laws of the State of Texas."
+            }
+          ]
+        },
+        {
+          "heading": "Changes to these terms",
+          "blocks": [
+            {
+              "text": "We may update these terms from time to time. When we do, we'll change the \"Last updated\" date at the top of this page."
+            }
+          ]
+        },
+        {
+          "heading": "Contact us",
+          "blocks": [
+            {
+              "text": "Questions about these terms? Email fareed.huda@primedeskgroup.com or call +1 (832) 819-8366."
+            },
+            {
+              "text": "PrimeDesk Business Solutions, Houston, Texas"
+            }
+          ]
         }
       ]
-    },
-    "shared": {
-      "cta": {
-        "label": "Contact us",
-        "href": "/contact"
-      }
     }
   },
   "notFound": {

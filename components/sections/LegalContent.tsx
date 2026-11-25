@@ -1,48 +1,69 @@
-import Image from "next/image";
-import Button from "@/components/ui/Button";
-import type pages from "@/data/pages.json";
+import { site } from "@/lib/site";
 import styles from "./LegalContent.module.css";
 
-type Props = {
-  content: typeof pages.legal.privacy;
-  cta: typeof pages.legal.shared.cta;
+type TextBlock = { text: string } | { items: string[] };
+
+type LegalPage = {
+  heading: string;
+  updated: string;
+  intro: string;
+  rows: { heading: string; blocks: TextBlock[] }[];
 };
 
-export default function LegalContent({ content, cta }: Props) {
+const links: Record<string, string> = {
+  [site.email]: "mailto:" + site.email,
+  [site.phoneDisplay]: "tel:" + site.phone,
+  "Privacy Policy": "/privacy-policy",
+};
+
+function Prose({ text }: { text: string }) {
+  return text.split(/(fareed\.huda@primedeskgroup\.com|\+1 \(832\) 819-8366|Privacy Policy)/g).map((part, index) => (
+    Object.hasOwn(links, part) ? <a key={index} href={links[part]}>{part}</a> : part
+  ));
+}
+
+export default function LegalContent({ content }: { content: LegalPage }) {
+  const updated = new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" }).format(new Date(content.updated));
+  const sections = content.rows.map((row) => ({
+    ...row,
+    id: row.heading.toLowerCase().replace(/"/g, "").replaceAll(" ", "-"),
+  }));
+
   return (
-    <section className={styles.section}>
+    <article className={styles.section} aria-labelledby="legal-title">
       <div className={styles.container}>
-        <div className={styles.header}>
-          <div>
-            <h1 className="h1">{content.heading}</h1>
-          </div>
-          <div>
-            <p className={`body18 ${styles.description}`}>{content.description}</p>
-          </div>
-          <div className={styles.updated}>
-            <span className={styles.updatedLabel}>
-              <Image src="/images/icon-updated.svg" alt="" width={22} height={22} unoptimized />
-              {content.updatedLabel}
-            </span>
-            <span className={styles.separator}>{content.separator}</span>
-            <span className={styles.note}>{content.note}</span>
+        <header className={styles.header}>
+          <h1 id="legal-title" className={styles.heading}>{content.heading}</h1>
+          <p className={styles.updated}>Last updated <time dateTime={content.updated}>{updated}</time></p>
+          <p className={styles.intro}>{content.intro}</p>
+        </header>
+
+        <div className={styles.layout}>
+          <nav className={styles.contents} aria-label="On this page">
+            <p className={styles.contentsTitle}>On this page</p>
+            <ul>
+              {sections.map(({ heading, id }) => (
+                <li key={id}><a href={"#" + id}>{heading}</a></li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className={styles.body}>
+            {sections.map(({ heading, id, blocks }) => (
+              <section key={id} id={id} className={styles.row} aria-labelledby={id + "-heading"}>
+                <h2 id={id + "-heading"}>{heading}</h2>
+                {blocks.map((block, index) => "items" in block ? (
+                  <ul key={index} className={styles.bullets}>
+                    {block.items.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                ) : (
+                  <p key={index}><Prose text={block.text} /></p>
+                ))}
+              </section>
+            ))}
           </div>
         </div>
-
-        {content.rows.map((row) => (
-          <div key={row.heading} className={styles.row}>
-            <h3>{row.heading}</h3>
-            <div className={styles.body}>
-              {row.blocks.map((block, index) => (
-                <p key={index} className={styles.text}>
-                  {block.text}
-                </p>
-              ))}
-              {"cta" in row && <Button href={cta.href} label={cta.label} variant="dark" arrow={false} className={styles.cta} />}
-            </div>
-          </div>
-        ))}
       </div>
-    </section>
+    </article>
   );
 }
