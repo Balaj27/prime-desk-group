@@ -25,10 +25,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/PrimeDesk-Portfolio.pdf",
-        headers: [{ key: "Content-Disposition", value: 'attachment; filename="PrimeDesk-Portfolio.pdf"' }],
-      },
-      {
         source: "/:path*",
         headers: [
           { key: "Content-Security-Policy", value: contentSecurityPolicy },

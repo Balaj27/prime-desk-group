@@ -1,10 +1,10 @@
 .section {
-  padding: 80px var(--content-gutter);
+  padding: 80px 30px;
   overflow: clip;
 }
 
 .container {
-  max-width: var(--content-width);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -42,6 +42,7 @@
   line-height: 24px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.4s var(--ease-bounce) 0.13s, color 0.4s var(--ease-bounce) 0.13s;
 }
 
 .tab[data-active="true"] {
@@ -55,11 +56,18 @@
   gap: 8px;
 }
 
+/* Switching tabs resizes the list smoothly. */
+.items[data-resizing="true"] {
+  overflow: clip;
+  transition: height 0.5s var(--ease-spring);
+}
+
 .item {
   padding: 24px;
   border-radius: 24px;
   background: var(--white);
   color: var(--ink);
+  transition: background-color 0.45s var(--ease-spring) 0.11s, color 0.45s var(--ease-spring) 0.11s;
 }
 
 .item[data-open="true"] {
@@ -92,21 +100,21 @@
   height: 44px;
   border-radius: 100px;
   background: var(--ink);
+  transition: background-color 0.45s var(--ease-spring) 0.11s;
 }
 
 .item[data-open="true"] .icon {
   background: var(--white);
 }
 
-.answerPanel {
+.answerWrap {
   display: grid;
   grid-template-rows: 0fr;
-  visibility: hidden;
+  transition: grid-template-rows 0.6s var(--ease-spring) 0.02s;
 }
 
-.item[data-open="true"] .answerPanel {
+.item[data-open="true"] .answerWrap {
   grid-template-rows: 1fr;
-  visibility: visible;
 }
 
 .answerClip {
@@ -118,49 +126,48 @@
   padding-top: 16px;
   font-size: 16px;
   line-height: 27.2px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  transform-origin: 50% 0;
+  transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .answerPanel {
-    transition: grid-template-rows 220ms ease, visibility 0s linear 220ms;
-  }
+.item[data-open="true"] .answer {
+  opacity: 0.64;
+  transform: none;
+}
 
-  .item[data-open="true"] .answerPanel {
-    transition-delay: 0s;
-  }
-
-  .tab,
-  .item,
-  .icon {
-    transition: background-color 160ms ease, color 160ms ease;
-  }
+/* The open answer fades and settles once it enters view itself, ahead of the list's delayed reveal. */
+.items[data-answer-seen="false"] .item[data-open="true"] .answer {
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
 }
 
 @media (max-width: 1199.98px) {
   .section {
-    padding: 0 var(--content-gutter) 80px;
+    padding: 0 30px 80px;
   }
 
   .section[data-placement="beforePricing"] {
-    padding: 80px var(--content-gutter) 0;
+    padding: 80px 30px 0;
   }
 
   .section[data-placement="standalone"] {
-    padding: 80px var(--content-gutter);
+    padding: 80px 30px;
   }
 }
 
 @media (max-width: 809.98px) {
   .section {
-    padding: 0 var(--content-gutter) 80px;
+    padding: 0 20px 80px;
   }
 
   .section[data-placement="beforePricing"] {
-    padding: 10px var(--content-gutter) 0;
+    padding: 10px 20px 0;
   }
 
   .section[data-placement="standalone"] {
-    padding: 80px var(--content-gutter);
+    padding: 80px 20px;
   }
 
   .header {
@@ -184,16 +191,16 @@
 
 @media (min-width: 1200px) and (max-width: 1439.98px) {
   .section[data-placement="beforePricing"] {
-    padding: 80px var(--content-gutter) 0;
+    padding: 80px 30px 0;
   }
 
   .section[data-placement="standalone"] {
-    padding: 80px var(--content-gutter);
+    padding: 80px 30px;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1439.98px) {
   .section[data-placement="afterCards"] {
-    padding: 0 var(--content-gutter) 80px;
+    padding: 0 30px 80px;
   }
 }

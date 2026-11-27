@@ -1,40 +1,93 @@
-.card {
-  padding: clamp(18px, 3vw, 30px);
-  border: 1px solid #dcd5c8;
-  border-radius: 18px;
-  background: var(--white);
+.section {
+  padding: 80px 30px;
+  overflow: clip;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .heading {
-  margin-bottom: 16px;
-  font-size: 1.25rem;
+  width: 555px;
+  max-width: 100%;
+  margin: 0 auto 56px;
+  text-align: center;
 }
 
-.list {
+.cards {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  height: 100%;
+  padding: 32px;
+  border-radius: 20px;
+  background: var(--pill);
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background: #d9e5fb;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  margin: 0;
 }
 
-.list dt {
-  margin-bottom: 3px;
-  color: var(--gray-115);
-  font-size: 0.875rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.text h3 {
+  font-size: 24px;
+  line-height: 31.2px;
+  font-weight: 600;
 }
 
-.list dd {
-  margin: 0;
-  overflow-wrap: anywhere;
-  font-weight: 700;
+.text p {
+  font-size: 16px;
+  line-height: 27.2px;
+  color: var(--gray-82);
 }
 
-.list a:hover {
-  text-decoration: underline;
+/* Inner pages keep their tablet layout up to 1440px. */
+@media (max-width: 1439.98px) {
+  .section {
+    padding-top: 0;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.emailPart {
-  white-space: nowrap;
+@media (max-width: 809.98px) {
+  .section {
+    padding: 0 20px 80px;
+  }
+
+  .heading {
+    margin-bottom: 40px;
+  }
+
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
+
+.cards {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+

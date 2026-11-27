@@ -1,15 +1,19 @@
+import { Fragment } from "react";
 import Ticker from "@/components/ui/Ticker";
 import styles from "./BrandTicker.module.css";
 
 export default function BrandTicker({ items }: { items: string[] }) {
   return (
-    <section className={styles.section} data-scroll-static>
+    <section className={styles.section}>
       <Ticker gap={35}>
         {items.map((item, index) => (
-          <div key={`${item}-${index}`} className={styles.item}>
-            <span className={styles.slash} aria-hidden="true">/</span>
-            <span>{item}</span>
-          </div>
+          <Fragment key={`${item}-${index}`}>
+            <div className={styles.item}>
+              <span className={styles.slash}>/</span>
+              <span>{item}</span>
+            </div>
+            <span className={styles.line} />
+          </Fragment>
         ))}
       </Ticker>
     </section>

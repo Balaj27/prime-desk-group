@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import JsonLd from "@/components/ui/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
-import { shareImage, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const urbanist = localFont({
@@ -14,6 +14,14 @@ const urbanist = localFont({
   display: "swap",
 });
 
+const display = localFont({
+  src: "../public/fonts/bebas-neue-latin-400-normal.woff2",
+  weight: "400",
+  style: "normal",
+  variable: "--font-display",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   applicationName: site.name,
@@ -21,8 +29,6 @@ export const metadata: Metadata = {
   description: site.description,
   authors: [{ name: site.legalName }],
   formatDetection: { telephone: false },
-  openGraph: { images: [shareImage] },
-  twitter: { card: "summary_large_image", images: [shareImage] },
 };
 
 export const viewport: Viewport = {
@@ -31,7 +37,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={urbanist.variable}>
+    <html lang="en" className={`${urbanist.variable} ${display.variable}`}>
       {/* Browser extensions such as ColorZilla add attributes to <body> before React loads. */}
       <body suppressHydrationWarning>
         <JsonLd data={organizationSchema} />

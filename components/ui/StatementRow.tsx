@@ -1,3 +1,4 @@
+import RevealText from "@/components/ui/RevealText";
 import styles from "./StatementRow.module.css";
 
 /** Small label beside a large scroll-revealed statement. */
@@ -5,7 +6,7 @@ export default function StatementRow({ eyebrow, statement }: { eyebrow: string; 
   return (
     <div className={styles.row}>
       <p className={`body18 ${styles.eyebrow}`}>{eyebrow}</p>
-      <p className={styles.statement}>{statement}</p>
+      <RevealText text={statement} className={styles.statement} />
     </div>
   );
 }

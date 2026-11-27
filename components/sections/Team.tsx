@@ -1,55 +1,57 @@
 import Image from "next/image";
+import Button from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 import type page from "@/data/pages.json";
 import styles from "./Team.module.css";
 
-type FounderContent = typeof page.about.founder;
+type Props = { content: typeof page.about.team };
 
-function FounderPhoto({ founder }: { founder: FounderContent }) {
+export default function Team({ content: team }: Props) {
+  const { join } = team;
   return (
-    <div className={styles.art} data-scroll-group>
-      <Image src={founder.portrait} alt={`${founder.name} seated outdoors`} fill sizes="(max-width: 560px) 44vw, 245px" quality={85} />
-    </div>
-  );
-}
-
-export function Founder({ content }: { content: FounderContent }) {
-  return (
-    <section className={`${styles.section} ${styles.founder}`} aria-labelledby="founder-heading">
-      <div className={`${styles.container} ${styles.founderLayout}`}>
-        <FounderPhoto founder={content} />
-        <div>
-          <p className={styles.eyebrow}>From the founder</p>
-          <h2 id="founder-heading" className={styles.founderName}>{content.name}</h2>
-          <p className={`body18 ${styles.description}`}>{content.description}</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export default function Team({ content: team, founder }: { content: typeof page.about.team; founder: FounderContent }) {
-  return (
-    <section className={styles.section} aria-labelledby="team-heading">
+    <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Team</p>
-          <h2 id="team-heading" className="h1">{team.heading} <span>{team.accent}</span></h2>
-          <p className={`body18 ${styles.description}`}>{team.description}</p>
+          <Reveal soft>
+            <h2 className="h1">{team.heading}</h2>
+          </Reveal>
+          <Reveal soft delay={0.1}>
+            <p className={`body18 ${styles.description}`}>{team.description}</p>
+          </Reveal>
         </div>
-        <ul className={styles.grid}>
-          <li className={`${styles.role} card-lift`}>
-            <div className={styles.art} aria-hidden="true">FH</div>
-            <h3>{founder.name}</h3>
-            <p>Founder</p>
-          </li>
-          {team.roles.map((role) => (
-            <li key={role.title} className={`${styles.role} card-lift`}>
-              <div className={styles.art} aria-hidden="true">{role.mark}</div>
-              <h3>{role.title}</h3>
-              <p>{role.description}</p>
-            </li>
+
+        <div className={styles.grid}>
+          <Reveal soft delay={0.2} className={styles.joinSlot}>
+            <article className={styles.join}>
+              <div className={styles.joinText}>
+                <p className={styles.joinEyebrow}>{join.eyebrow}</p>
+                <h3>{join.title}</h3>
+                <p className={styles.joinDescription}>{join.description}</p>
+              </div>
+              <Button href={join.cta.href} label={join.cta.label} />
+            </article>
+          </Reveal>
+
+          {team.members.map((member, index) => (
+            <Reveal key={member.name} soft delay={0.3 + index * 0.1} className={styles.memberSlot}>
+              <article className={styles.member}>
+                <div className={styles.photo}>
+                  <Image src={member.image} alt={`${member.name} at PrimeDesk`} fill sizes="(max-width: 809px) 100vw, (max-width: 1199px) 50vw, 285px" quality={85} />
+                  <span className={styles.blur} />
+                  <div className={styles.socials}>
+                    {team.socials.map((social) => (
+                      <a key={social.label} href={social.href} aria-label={social.label} className={styles.social}>
+                        <Image src={social.icon} alt="" width={24} height={24} unoptimized />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <h3>{member.name}</h3>
+                <p className={styles.role}>{member.role}</p>
+              </article>
+            </Reveal>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

@@ -1,48 +1,87 @@
+"use client";
+
 import Image from "next/image";
+import { Fragment, useState } from "react";
 import Button from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 import type content from "@/data/landing-page.json";
 import styles from "./Services.module.css";
 
 type Props = {
   content: typeof content.services;
-  layout?: "illustrated" | "numbered" | "numbered-photos";
-  intro?: { heading: string; accent: string; description: string };
+  /** Keeps rows static, with no hover expansion, up to 1440px instead of 1200px. */
+  staticUntil1440?: boolean;
 };
 
-export default function Services({ content: services, layout = "illustrated", intro }: Props) {
-  const numbered = layout !== "illustrated";
-  const showPhotos = layout !== "numbered";
-  const heading = intro?.heading ?? (numbered ? "Everything your business needs to be" : services.heading);
-  const accent = intro?.accent ?? (numbered ? "marketed, built, presented, and staffed." : undefined);
+function ServiceDetails({ item }: { item: Props["content"]["items"][number] }) {
+  return (
+    <div className={styles.summary}>
+      <p className="body18">{item.summary}</p>
+      <ul className={styles.offerings} data-dense={item.offerings.length > 6}>
+        {item.offerings.map((offering) => (
+          <li key={offering} className={styles.offering}>{offering}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function Services({ content: services, staticUntil1440 = false }: Props) {
+  const [active, setActive] = useState(0);
 
   return (
-    <section className={styles.section} data-layout={layout} aria-labelledby="services-heading">
-      {layout === "numbered" && <p className={styles.eyebrow}>{services.heading}</p>}
-      <h2 id="services-heading" className="h1">
-        {heading}{accent && <> <span className={styles.accent}>{accent}</span></>}
-      </h2>
-      {intro && <p className={`body18 ${styles.intro}`}>{intro.description}</p>}
+    <section className={styles.section} data-static-until-1440={staticUntil1440}>
+      <div className={styles.header}>
+        <Reveal>
+          <h2 className="h1">{services.heading}</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className={`body18 ${styles.description}`}>{services.description}</p>
+        </Reveal>
+      </div>
+
       <div className={styles.rows}>
-        {services.items.map((item) => (
-          <article key={item.id} id={item.id} className={`${styles.row} card-lift`}>
-            {numbered && <span className={styles.number} aria-hidden="true">{item.number}</span>}
-            <div className={styles.label}>
-              <p className={styles.serviceName}>
-                {item.title}
-              </p>
-              <h3>{item.outcome}</h3>
-              <p>{item.summary}</p>
-              <Button href={`/contact?service=${encodeURIComponent(item.contactOption)}`} label="Ask about this" variant={numbered ? "planLight" : "red"} />
-            </div>
-            <ul className={styles.offerings}>
-              {item.offerings.map((offering) => <li key={offering}>{offering}</li>)}
-            </ul>
-            {showPhotos && (
-              <div className={styles.picture}>
-                <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 650px) min(80vw, 400px), (max-width: 830px) 38vw, 265px" quality={85} />
+        {services.items.map((item, index) => (
+          <Fragment key={item.title}>
+            <span className={styles.line} data-hidden={index > 0 && active === index - 1} />
+            <article id={item.id} className={styles.row} data-active={active === index} onMouseEnter={() => setActive(index)}>
+              <div className={styles.expanded}>
+                <Image src={services.background} alt="" fill sizes="100vw" quality={85} className={styles.background} />
+                <div className={styles.expandedInner}>
+                  <div className={styles.media}>
+                    <span className={styles.number}>{item.number}</span>
+                    <div className={styles.image}>
+                      <Image src={item.image} alt="" fill sizes="387px" quality={85} />
+                    </div>
+                  </div>
+                  <div className={styles.details}>
+                    <div className={styles.titleRow}>
+                      <div className={styles.titleBlock}>
+                        <p className={styles.category}>{item.category}</p>
+                        <h3 className={styles.title}>{item.title}</h3>
+                      </div>
+                      <Button href={`${services.cta.href}?service=${encodeURIComponent(item.contactOption)}`} label={services.cta.label} />
+                    </div>
+                    <ServiceDetails item={item} />
+                  </div>
+                </div>
               </div>
-            )}
-          </article>
+
+              <div className={styles.collapsed}>
+                <span className={styles.number}>{item.number}</span>
+                <div className={styles.titleRow}>
+                  <div className={styles.titleBlock}>
+                    <p className={styles.category}>{item.category}</p>
+                    <h3 className={styles.title}>{item.title}</h3>
+                  </div>
+                  <Button href={`${services.cta.href}?service=${encodeURIComponent(item.contactOption)}`} label={services.cta.label} />
+                </div>
+              </div>
+              <div className={styles.compactDetails}>
+                <ServiceDetails item={item} />
+              </div>
+            </article>
+          </Fragment>
         ))}
       </div>
     </section>

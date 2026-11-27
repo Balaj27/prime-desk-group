@@ -1,18 +1,31 @@
-import BookingButton from "@/components/ui/BookingButton";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
-import type landing from "@/data/landing-page.json";
+import Reveal from "@/components/ui/Reveal";
+import type content from "@/data/landing-page.json";
 import styles from "./Cta.module.css";
 
-export default function Cta({ content }: { content: typeof landing.cta }) {
+type Props = { content: typeof content.cta };
+
+export default function Cta({ content: cta }: Props) {
   return (
     <section className={styles.section}>
-      <div className={styles.title}>
-        <h2 className="h1">{content.heading}</h2>
-        {content.description && <p className={`body18 ${styles.description}`}>{content.description}</p>}
-        <div className={styles.button}>
-          <BookingButton variant="white" />
-          <Button href="/PrimeDesk-Portfolio.pdf" label="Download our portfolio (PDF)" variant="outline" download />
+      <Reveal>
+        <div className={styles.shape}>
+          <Image src={cta.image} alt="" fill sizes="321px" quality={85} />
         </div>
+      </Reveal>
+      <div className={styles.title}>
+        <Reveal delay={0.1}>
+          <h2 className="h1">{cta.heading}</h2>
+        </Reveal>
+        {cta.description && (
+          <Reveal delay={0.2}>
+            <p className={`body18 ${styles.description}`}>{cta.description}</p>
+          </Reveal>
+        )}
+        <Reveal delay={0.3} className={styles.button}>
+          <Button href={cta.button.href} label={cta.button.label} />
+        </Reveal>
       </div>
     </section>
   );

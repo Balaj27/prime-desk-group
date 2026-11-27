@@ -1,40 +1,62 @@
+"use client";
+
 import Image from "next/image";
+import { useCallback, useRef } from "react";
+import Reveal from "@/components/ui/Reveal";
+import { useScrollSpring } from "@/components/ui/useScrollSpring";
 import type content from "@/data/landing-page.json";
 import styles from "./Process.module.css";
 
 type Props = { content: typeof content.process };
 
+const SPRING_POLES = [12, 36] as const;
+
 export default function Process({ content: process }: Props) {
+  const railRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const readTargets = useCallback(() => {
+    const spacer = scrollRef.current;
+    const rail = railRef.current;
+    if (!spacer || !rail || window.innerWidth >= 1200) return [0];
+    const box = spacer.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, (window.innerHeight - box.top) / box.height));
+    const travel = Math.max(0, rail.offsetWidth - spacer.clientWidth);
+    return [-travel * progress];
+  }, []);
+
+  const apply = useCallback(([x]: number[]) => {
+    if (railRef.current) railRef.current.style.transform = x === 0 ? "" : `translate3d(${x}px, 0, 0)`;
+  }, []);
+
+  useScrollSpring(readTargets, apply, SPRING_POLES[0], SPRING_POLES[1]);
+
   return (
-    <section className={styles.section} aria-labelledby="process-heading">
+    <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <p className={styles.eyebrow}>{process.eyebrow}</p>
-          <h2 id="process-heading" className={`h1 ${styles.heading}`}>
-            {process.heading} <span>{process.headingAccent}</span>
-          </h2>
-        </div>
-        <ol className={styles.steps}>
-          {process.steps.map((step) => (
-            <li key={step.number} className={`${styles.step} card-lift`}>
-              <div className={styles.image}>
-                <Image src={step.image} alt={step.imageAlt} fill sizes="(max-width: 550px) 100vw, (max-width: 900px) 50vw, 285px" quality={85} />
+        <Reveal className={styles.header}>
+          <h2 className={`h1 ${styles.heading}`}>{process.heading}</h2>
+        </Reveal>
+        <Reveal delay={0.1} className={styles.wrapper}>
+          <div ref={railRef} className={styles.rail}>
+            {process.steps.map((step, index) => (
+              <div key={step.number} className={styles.row}>
+                <div className={styles.slot} style={{ gridColumn: index + 1 }}>
+                  <article className={styles.card}>
+                    <Image src={step.image} alt="" fill sizes="(max-width: 1199px) 335px, 285px" quality={85} className={styles.image} />
+                    <span className={styles.number}>{step.number}</span>
+                    <div className={styles.text}>
+                      <h3>{step.title}</h3>
+                      <p className="body18">{step.description}</p>
+                    </div>
+                  </article>
+                </div>
               </div>
-              <span className={styles.number} aria-hidden="true">{step.number}</span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </li>
-          ))}
-        </ol>
-        <div className={styles.responsibilities}>
-          {process.responsibilities.map((part) => (
-            <div key={part.title} className={styles.responsibility} data-scroll-group>
-              <h3>{part.title}</h3>
-              <p>{part.description}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
+      <div ref={scrollRef} className={styles.scrollSpacer} />
     </section>
   );
 }

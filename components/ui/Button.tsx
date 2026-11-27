@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ReactNode } from "react";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "red" | "white" | "outline" | "planLight" | "planDark" | "work" | "submit" | "dark" | "apply";
@@ -15,24 +15,32 @@ function Arrow() {
   );
 }
 
-type InnerProps = { label: string; arrow?: boolean };
+type InnerProps = { label: string; arrow?: boolean; align?: "center" };
 
-function ButtonInner({ label, arrow = true }: InnerProps) {
+export function ButtonInner({ label, arrow = true }: InnerProps) {
   return (
     <>
-      <span>{label}</span>
+      <span className={styles.text}>
+        <span className={styles.line}>{label}</span>
+        <span className={`${styles.line} ${styles.lineHover}`} aria-hidden="true">
+          {label}
+        </span>
+      </span>
       {arrow && (
-        <span className={styles.arrow} aria-hidden="true">
-          <Arrow />
+        <span className={styles.icon}>
+          <span className={styles.arrow}>
+            <Arrow />
+          </span>
+          <span className={`${styles.arrow} ${styles.arrowHover}`}>
+            <Arrow />
+          </span>
         </span>
       )}
     </>
   );
 }
 
-type LinkProps = Pick<ComponentPropsWithoutRef<"a">, "target" | "rel" | "download" | "onClick" | "onAuxClick">;
-
-type ButtonProps = LinkProps & {
+type ButtonProps = {
   href?: string;
   label: string;
   variant?: ButtonVariant;
@@ -43,7 +51,8 @@ type ButtonProps = LinkProps & {
   children?: ReactNode;
 };
 
-export default function Button({ href, label, variant = "red", arrow = true, block, as = "a", className = "", ...linkProps }: ButtonProps) {
+/** Pill button with Framer's two-line text slide and diagonal arrow swap on hover. */
+export default function Button({ href, label, variant = "red", arrow = true, block, as = "a", className = "" }: ButtonProps) {
   const classes = `${styles.button} ${styles[variant]} ${block ? styles.block : ""} ${className}`;
   const inner = <ButtonInner label={label} arrow={arrow} />;
   if (as === "span") return <span className={classes}>{inner}</span>;
@@ -54,9 +63,10 @@ export default function Button({ href, label, variant = "red", arrow = true, blo
       </button>
     );
   return (
-    <a href={href} className={classes} {...linkProps}>
+    <a href={href} className={classes}>
       {inner}
     </a>
   );
 }
 
+export const buttonHoverGroup = styles.group;

@@ -1,53 +1,18 @@
-import { after, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import { CONTACT_NAME_MAX_LENGTH, EMAIL_PATTERN, getContactError } from "@/lib/contact";
-import { site } from "@/lib/site";
+import { NextResponse } from "next/server";
 
-export const maxDuration = 30;
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/moedrkle";
-const MAX_LENGTHS = { email: 200, phone: 40, company: 160, message: 4000, goal: 4000 };
+const MAX_LENGTHS = { name: 120, email: 200, phone: 40, company: 160, message: 4000 };
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Resend's shared sender. Replace it with an address on the verified domain once the domain is live.
+const SENDER = "PrimeDesk Website <onboarding@resend.dev>";
 
 const text = (value: unknown, max: number) => (typeof value === "string" ? value.trim().slice(0, max) : "");
-
-async function sendThankYou(email: string) {
-  const user = process.env.SMTP_USER?.trim();
-  const pass = process.env.SMTP_APP_PASSWORD?.replace(/\s/g, "");
-  if (!user || !pass) {
-    console.warn("Contact acknowledgment skipped because SMTP is not configured.");
-    return;
-  }
-
-  const mailer = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: { user, pass },
-    connectionTimeout: 8000,
-    greetingTimeout: 5000,
-    socketTimeout: 8000,
-  });
-
-  try {
-    await mailer.sendMail({
-      from: { name: "PrimeDesk", address: user },
-      to: { name: "", address: email },
-      replyTo: site.email,
-      subject: "Thanks for contacting PrimeDesk",
-      text: "Thanks for filling out the PrimeDesk contact form. We've received your message and will be in touch soon.\n\nThe PrimeDesk team",
-      headers: { "Auto-Submitted": "auto-replied", "X-Auto-Response-Suppress": "All" },
-    });
-  } catch (error) {
-    console.error("Could not send the contact acknowledgment.", error instanceof Error ? error.name : "Unknown error");
-  }
-}
+const escapeHtml = (value: string) =>
+  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
-    const data: unknown = await request.json();
-    if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("Invalid request body");
-    body = data as Record<string, unknown>;
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
@@ -55,49 +20,50 @@ export async function POST(request: Request) {
   // Bots fill the hidden field: report success and send nothing.
   if (text(body.website, 200)) return NextResponse.json({ ok: true });
 
-  const name = text(body.name, CONTACT_NAME_MAX_LENGTH);
+  const name = text(body.name, MAX_LENGTHS.name);
   const email = text(body.email, MAX_LENGTHS.email);
   const phone = text(body.phone, MAX_LENGTHS.phone);
   const company = text(body.company, MAX_LENGTHS.company);
   const message = text(body.message, MAX_LENGTHS.message);
-  const goal = text(body.goal, MAX_LENGTHS.goal);
   const needs = Array.isArray(body.needs) ? body.needs.map((need) => text(need, 80)).filter(Boolean).slice(0, 10) : [];
 
-  if ("goal" in body) {
-    if (!needs.length || !goal) {
-      return NextResponse.json({ error: "Choose what you need help with and enter a goal." }, { status: 400 });
-    }
-    if (!name) return NextResponse.json({ error: "Enter your name." }, { status: 400 });
-    const contactError = getContactError(email, phone);
-    if (contactError) return NextResponse.json({ error: contactError }, { status: 400 });
-  } else if (!name || !EMAIL_PATTERN.test(email)) {
+  if (!name || !EMAIL_PATTERN.test(email)) {
     return NextResponse.json({ error: "Name and a valid email are required." }, { status: 400 });
   }
 
-  const submission = new FormData();
-  // Keep the address in the lead record without triggering Formspree's autoresponse.
-  const fields = { name, lead_email: email, phone, company, needs: needs.join(", "), goal, message };
-  for (const [field, value] of Object.entries(fields)) {
-    if (value) submission.set(field, value);
-  }
-  submission.set("subject", "PrimeDesk website enquiry from " + name.replace(/[\r\n]+/g, " "));
-
-  try {
-    const response = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: submission,
-      signal: AbortSignal.timeout(10000),
-    });
-    const result = await response.json().catch(() => null);
-    if (response.ok && result?.ok === true) {
-      if (email) after(() => sendThankYou(email));
-      return NextResponse.json({ ok: true });
-    }
-    console.error("Formspree did not accept the contact submission.", response.status);
-  } catch (error) {
-    console.error("Could not reach Formspree.", error instanceof Error ? error.name : "Unknown error");
+  const apiKey = process.env.RESEND_API_KEY;
+  const recipient = process.env.CONTACT_NOTIFICATION_EMAIL;
+  if (!apiKey || !recipient) {
+    console.error("Contact form is missing RESEND_API_KEY or CONTACT_NOTIFICATION_EMAIL.");
+    return NextResponse.json({ error: "The contact form is not configured." }, { status: 500 });
   }
 
-  return NextResponse.json({ error: "The message could not be sent." }, { status: 502 });
+  const rows = [
+    ["Name", name],
+    ["Email", email],
+    ["Phone", phone],
+    ["Company", company],
+    ["Needs help with", needs.join(", ")],
+    ["Message", message],
+  ].filter(([, value]) => value);
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: SENDER,
+      to: [recipient],
+      reply_to: email,
+      subject: `New website enquiry from ${name.replace(/[\r\n]+/g, " ")}`,
+      text: rows.map(([label, value]) => `${label}: ${value}`).join("\n"),
+      html: rows.map(([label, value]) => `<p><strong>${label}:</strong><br>${escapeHtml(value).replace(/\n/g, "<br>")}</p>`).join(""),
+    }),
+  });
+
+  if (!response.ok) {
+    console.error("Resend rejected the contact email.", response.status);
+    return NextResponse.json({ error: "The message could not be sent." }, { status: 502 });
+  }
+
+  return NextResponse.json({ ok: true });
 }

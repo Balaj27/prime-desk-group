@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   margin-top: -108px;
-  padding: 0 var(--content-gutter);
+  padding: 0 30px;
   overflow: clip;
 }
 
@@ -14,7 +14,7 @@
   align-items: center;
   gap: 36px;
   width: 100%;
-  max-width: var(--content-width);
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
@@ -53,6 +53,6 @@
 @media (max-width: 809.98px) {
   .section {
     margin-top: -56px;
-    padding: 0 var(--content-gutter);
+    padding: 0 20px;
   }
 }

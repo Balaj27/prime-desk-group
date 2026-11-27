@@ -1,4 +1,3 @@
-import BrandTicker from "@/components/sections/BrandTicker";
 import Cta from "@/components/sections/Cta";
 import PageShell from "@/components/sections/PageShell";
 import Services from "@/components/sections/Services";
@@ -10,24 +9,23 @@ import { breadcrumbSchema, servicesSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
 
 const page = pages.services;
-const services = landing.services;
 
 export const metadata = pageMetadata({
-  title: "Marketing, Web, Brand & Support Services | PrimeDesk",
+  title: "Marketing, Web, Brand, Events & PR | PrimeDesk",
   description: page.hero.description,
   path: "/services",
+  image: "/og/services.jpg",
 });
 
 export default function ServicesPage() {
   return (
     <PageShell>
       <JsonLd data={breadcrumbSchema("Services", "/services")} />
-      {servicesSchema(services.items).map((schema) => (
+      {servicesSchema(landing.services.items).map((schema) => (
         <JsonLd key={schema.name} data={schema} />
       ))}
       <ServicesHero content={page.hero} />
-      <BrandTicker items={landing.brandTicker} />
-      <Services content={services} intro={page.intro} layout="numbered-photos" />
+      <Services content={landing.services} staticUntil1440 />
       <Cta content={page.closing} />
     </PageShell>
   );

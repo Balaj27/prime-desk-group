@@ -2,7 +2,6 @@
   --bg: #f5f2ed;
   --ink: #192033;
   --accent: #0066fa;
-  --brand-stripe: linear-gradient(127deg, var(--ink) 0 54%, var(--accent) 54% 75%, #0e2a6e 75%);
   --white: #ffffff;
   --gray-23: #192033;
   --gray-38: #262626;
@@ -13,17 +12,24 @@
   --gray-212: #d4d4d4;
   --card: #fbfaf9;
   --pill: #e9e5dd;
-  --content-width: 1200px;
-  --content-gutter: clamp(20px, 6.6vw, 96px);
-  --nav-height: 108px;
+
+  /* Fallbacks for browsers without linear(); the exact springs are defined below. */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --ease-enter: cubic-bezier(0.25, 0.8, 0.3, 1);
+  --ease-nav: cubic-bezier(0.25, 0.8, 0.3, 1);
 }
 
-@media (max-width: 1199.98px) {
-  :root { --nav-height: 92px; }
-}
-
-@media (max-width: 809.98px) {
-  :root { --nav-height: 64px; }
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    /* Framer spring: bounce .1, duration .6s. */
+    --ease-bounce: linear(0 0.0%, 0.09 2.3%, 0.57 15.6%, 0.86 27.4%, 0.99 40.7%, 1.015 53.0%, 1.011 66.0%, 1.005 79.0%, 1.001 91.6%, 1 100.0%);
+    --ease-spring: linear(0 0.0%, 0.0047 1.0%, 0.0386 3.0%, 0.1199 5.7%, 0.2467 9.0%, 0.4014 12.9%, 0.5601 17.2%, 0.7025 22.1%, 0.816 27.3%, 0.897 33.0%, 0.949 39.0%, 0.9787 45.5%, 0.9935 52.3%, 0.9996 59.4%, 1.0014 66.9%, 1.0014 74.7%, 1.0009 82.8%, 1.0005 91.3%, 1 100.0%);
+    /* Framer in-view spring: damping 80, stiffness 400, mass 1. */
+    --ease-enter: linear(0 0.0%, 0.0135 0.7%, 0.0825 2.2%, 0.1932 4.1%, 0.317 6.5%, 0.4381 9.3%, 0.5493 12.5%, 0.6468 16.0%, 0.7292 19.8%, 0.7966 23.9%, 0.8503 28.3%, 0.8918 33.0%, 0.9233 37.9%, 0.9465 43.1%, 0.9634 48.5%, 0.9753 54.2%, 0.9836 60.1%, 0.9893 66.2%, 0.9931 72.5%, 0.9956 79.1%, 0.9973 85.9%, 0.9983 92.8%, 1 100.0%);
+    /* Framer nav appear spring: damping 60, stiffness 400, mass 1. */
+    --ease-nav: linear(0 0.0%, 0.0204 1.2%, 0.1264 3.6%, 0.2944 6.9%, 0.4693 10.9%, 0.6214 15.6%, 0.7416 20.8%, 0.8307 26.6%, 0.8932 33.0%, 0.935 39.8%, 0.9618 47.1%, 0.9782 54.9%, 0.988 63.1%, 0.9936 71.7%, 0.9967 80.8%, 0.9983 90.2%, 1 100.0%);
+  }
 }
 
 *,
@@ -34,7 +40,6 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-padding-top: calc(var(--nav-height) + 16px);
 }
 
 body {
@@ -76,42 +81,42 @@ img {
   display: block;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.3s var(--ease-enter), transform 1.3s var(--ease-enter);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal-soft {
+  transition-duration: 0.95s;
+  transition-timing-function: var(--ease-nav);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Load-in entrance: Framer appear spring with damping 60, stiffness 400. */
+.appear {
+  animation: appearRise 0.95s var(--ease-nav) backwards;
+  animation-delay: var(--appear-delay, 0s);
+}
+
+@keyframes appearRise {
+  from {
+    opacity: 0.001;
+    transform: translateY(60px);
+  }
+}
+
 .h1 {
-  font-size: clamp(2.25rem, 5.3vw, 4rem);
+  font-size: 64px;
   line-height: 1.1;
   font-weight: 700;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-rise {
-    animation: hero-rise 400ms ease-out;
-  }
-
-  @keyframes hero-rise {
-    from { transform: translateY(14px); }
-    to { transform: none; }
-  }
-
-  .section-preview {
-    animation: section-preview 480ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--scroll-delay, 0s);
-  }
-
-  @keyframes section-preview {
-    from {
-      opacity: 0.75;
-      translate: 0 26px;
-    }
-  }
-}
-
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .card-lift {
-    transition: transform 160ms ease-out;
-  }
-
-  .card-lift:hover {
-    transform: translateY(-4px);
-  }
 }
 
 .body18 {
@@ -120,9 +125,30 @@ img {
   font-weight: 500;
 }
 
+@media (max-width: 1199.98px) {
+  .h1 {
+    font-size: 48px;
+  }
+}
+
 @media (max-width: 809.98px) {
+  .h1 {
+    font-size: 36px;
+  }
+
   .body18 {
     font-size: 16px;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .appear {
+    animation: none;
+  }
+}

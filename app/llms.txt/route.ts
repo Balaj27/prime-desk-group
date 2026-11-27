@@ -11,14 +11,14 @@ export function GET() {
 
 > ${site.description}
 
-${site.name} is a full-service marketing agency based in ${site.city}, Texas, founded in ${site.founded}. The team spans four countries and works as an embedded marketing department for small businesses.
+${site.name} is a full-service marketing agency based in ${site.city}, Texas, founded in ${site.founded}. The team spans four countries and works as an embedded marketing department for small businesses in ${site.industries.join(", ").toLowerCase()}.
 
 ## Pages
 
 - [Home](${site.url}/): What PrimeDesk does, how it works, and frequently asked questions.
-- [Services](${site.url}/services): The five service lines and what each includes.
+- [Services](${site.url}/services): All service lines and what each includes.
 - [About](${site.url}/about): The PrimeDesk story, what makes it different, and the team.
-- [Contact](${site.url}/contact): Send a message or find our contact details.
+- [Contact](${site.url}/contact): Book a call or send a message.
 
 ## Services
 

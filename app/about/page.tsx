@@ -1,11 +1,12 @@
-import ClientLogos from "@/components/sections/ClientLogos";
+import Clients from "@/components/sections/Clients";
 import Cta from "@/components/sections/Cta";
 import Impact from "@/components/sections/Impact";
+import PageIntro from "@/components/sections/PageIntro";
 import PageShell from "@/components/sections/PageShell";
-import Team, { Founder } from "@/components/sections/Team";
-import WhyPrimeDesk from "@/components/sections/WhyPrimeDesk";
+import Team from "@/components/sections/Team";
+import Values from "@/components/sections/Values";
 import JsonLd from "@/components/ui/JsonLd";
-import approvedClientLogos from "@/data/approved-client-logos.json";
+import landing from "@/data/landing-page.json";
 import pages from "@/data/pages.json";
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
@@ -17,6 +18,7 @@ export const metadata = pageMetadata({
   title,
   description: page.hero.statement,
   path: "/about",
+  image: "/og/about.jpg",
 });
 
 export default function AboutPage() {
@@ -24,11 +26,11 @@ export default function AboutPage() {
     <PageShell>
       <JsonLd data={webPageSchema("AboutPage", title, "/about", page.hero.statement)} />
       <JsonLd data={breadcrumbSchema("About", "/about")} />
-      <Impact content={page.impact} intro={page.hero} />
-      <Founder content={page.founder} />
-      <WhyPrimeDesk content={page.different} />
-      <Team content={page.team} founder={page.founder} />
-      <ClientLogos logos={approvedClientLogos} />
+      <PageIntro content={page.hero} />
+      <Impact content={page.impact} />
+      <Clients content={landing.clients} tabletUntil1440 />
+      <Values content={page.different} tabletUntil1440 />
+      <Team content={page.team} />
       <Cta content={page.cta} />
     </PageShell>
   );

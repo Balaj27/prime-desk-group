@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import Appear from "@/components/ui/Appear";
 import styles from "./UtilityHero.module.css";
 
 type Props = {
@@ -14,20 +15,20 @@ export default function UtilityHero({ image, heading, description, children }: P
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div>
+        <Appear>
           <Image src={image} alt="" width={220} height={220} unoptimized priority />
-        </div>
+        </Appear>
         <div className={styles.title}>
-          <div>
+          <Appear delay={0.1}>
             <h1 className="h1">{heading}</h1>
-          </div>
-          <div>
+          </Appear>
+          <Appear delay={0.2}>
             <p className={`body18 ${styles.description}`}>{description}</p>
-          </div>
+          </Appear>
         </div>
-        <div className={styles.action}>
+        <Appear delay={0.3} className={styles.action}>
           {children}
-        </div>
+        </Appear>
       </div>
     </section>
   );
