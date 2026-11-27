@@ -29,10 +29,12 @@
 }
 
 .logo {
-  position: relative;
-  display: block;
-  width: 264px;
-  height: 40px;
+  align-self: flex-start;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
 }
 
 .form {
@@ -200,9 +202,8 @@
     max-width: none;
   }
 
-  .logo {
-    width: 200px;
-    height: 30.3px;
+  .logo img {
+    height: 40px;
   }
 
   .columns {
@@ -225,14 +226,6 @@
     grid-column: 1 / -1;
     margin-left: min(0px, calc(-2.12% + 5.4px));
   }
-}
-
-.logo {
-  width: auto;
-  height: auto;
-  font-size: 46px;
-  line-height: 40px;
-  font-weight: 500;
 }
 
 .wordmark {

@@ -1,20 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import type content from "@/data/landing-page.json";
 import styles from "./Nav.module.css";
 
-type Props = { content: typeof content.nav };
+type Props = { content: typeof content.nav; overlay?: boolean };
 
-export default function Nav({ content: nav }: Props) {
+export default function Nav({ content: nav, overlay = false }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!overlay) return;
+
+    const update = () => setScrolled(window.scrollY > 12);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [overlay]);
 
   return (
-    <nav className={styles.nav} data-open={menuOpen} aria-label="Main">
+    <nav className={styles.nav} data-open={menuOpen} data-overlay={overlay} data-scrolled={scrolled} aria-label="Main">
       <div className={styles.container}>
         <a href="/" className={styles.logo}>
-          {nav.name}
+          <Image src="/images/primedesk-logo.png" alt="" width={46} height={40} unoptimized />
+          <span>{nav.name}</span>
         </a>
 
         <div className={styles.links}>

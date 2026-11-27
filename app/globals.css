@@ -12,6 +12,7 @@
   --gray-212: #d4d4d4;
   --card: #fbfaf9;
   --pill: #e9e5dd;
+  --site-nav-height: 108px;
 
   /* Fallbacks for browsers without linear(); the exact springs are defined below. */
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
@@ -40,6 +41,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--site-nav-height) + 12px);
 }
 
 body {
@@ -126,12 +128,20 @@ img {
 }
 
 @media (max-width: 1199.98px) {
+  :root {
+    --site-nav-height: 92px;
+  }
+
   .h1 {
     font-size: 48px;
   }
 }
 
 @media (max-width: 809.98px) {
+  :root {
+    --site-nav-height: 56px;
+  }
+
   .h1 {
     font-size: 36px;
   }

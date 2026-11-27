@@ -13,7 +13,7 @@ export default function Footer({ content: footer }: Props) {
         <Reveal className={styles.top}>
           <div className={styles.brand}>
             <a href="/" className={styles.logo}>
-              {footer.name}
+              <Image src="/images/primedesk-logo.png" alt={footer.name} width={58} height={50} unoptimized />
             </a>
             <p>{footer.description}</p>
           </div>

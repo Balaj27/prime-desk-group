@@ -1,10 +1,21 @@
 .nav {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 20;
-  height: 108px;
+  height: var(--site-nav-height);
   padding: 28px 30px;
   background: var(--bg);
   animation: navIn 0.95s var(--ease-nav) backwards;
+}
+
+.nav[data-overlay="true"] {
+  margin-bottom: calc(0px - var(--site-nav-height));
+  background: transparent;
+  transition: background-color 0.22s ease;
+}
+
+.nav[data-overlay="true"][data-scrolled="true"] {
+  background: var(--ink);
 }
 
 @keyframes navIn {
@@ -24,11 +35,19 @@
 }
 
 .logo {
-  display: block;
+  display: inline-flex;
   flex: none;
-  width: 161px;
-  height: 24px;
-  filter: invert(1);
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: clamp(24px, 2.45vw, 30px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
 }
 
 .links {
@@ -50,6 +69,15 @@
 .allPages:hover,
 .allPages[data-open="true"] {
   color: var(--accent);
+}
+
+.nav[data-overlay="true"] .logo,
+.nav[data-overlay="true"] .link {
+  color: var(--white);
+}
+
+.nav[data-overlay="true"] .link:hover {
+  color: #bfdbfe;
 }
 
 .allPages {
@@ -140,7 +168,6 @@
 
 @media (max-width: 1199.98px) {
   .nav {
-    height: 92px;
     padding: 20px 30px;
   }
 
@@ -162,17 +189,24 @@
 
 @media (max-width: 809.98px) {
   .nav {
-    height: 56px;
     padding: 0;
     background: transparent;
   }
 
   .container {
-    height: 56px;
+    height: var(--site-nav-height);
     padding: 16px 20px;
     background: var(--bg);
     position: relative;
     z-index: 2;
+  }
+
+  .nav[data-overlay="true"] .container {
+    background: transparent;
+  }
+
+  .nav[data-overlay="true"][data-open="true"] .container {
+    background: var(--ink);
   }
 
   .links,
@@ -231,7 +265,7 @@
 
   .menu {
     position: fixed;
-    inset: 56px 0 0;
+    inset: var(--site-nav-height) 0 0;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -293,16 +327,8 @@
   .nav {
     animation: none;
   }
-}
 
-.logo {
-  width: auto;
-  filter: none;
-  position: relative;
-  top: 0.7px;
-  margin-left: -1.7px;
-  font-size: 30.5px;
-  line-height: 24px;
-  font-weight: 700;
-  color: var(--ink);
+  .nav[data-overlay="true"] {
+    transition: none;
+  }
 }

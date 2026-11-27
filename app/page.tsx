@@ -22,7 +22,7 @@ export const metadata = pageMetadata({
 
 export default function Home() {
   return (
-    <PageShell>
+    <PageShell overlayNav>
       <JsonLd data={faqSchema(content.faq.items)} />
       <Hero content={content.hero} />
       <BrandTicker items={content.brandTicker} />
