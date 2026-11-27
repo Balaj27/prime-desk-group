@@ -9,7 +9,9 @@
 }
 
 .block {
-  display: flex;
+  --icon-size: 36px;
+  display: grid;
+  grid-template-columns: var(--icon-size) minmax(0, 1fr) var(--icon-size);
   flex: none;
   align-items: center;
   gap: 14px;
@@ -28,11 +30,12 @@
 .label {
   min-width: 0;
   overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .icon {
-  flex: none;
-  font-size: 36px;
+  justify-self: start;
+  font-size: var(--icon-size);
   line-height: 1;
 }
 
@@ -68,6 +71,7 @@
   }
 
   .block {
+    --icon-size: 28px;
     width: min(260px, 90vw);
     height: 112px;
     padding: 12px 16px;
@@ -75,9 +79,5 @@
     gap: 10px;
     font-size: 22px;
     line-height: 28px;
-  }
-
-  .icon {
-    font-size: 28px;
   }
 }
